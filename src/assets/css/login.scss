@@ -1,15 +1,46 @@
 .login-page{
     background-color: #F5F5F5;
-
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column-reverse;
     .login-page-content{
         background-color:  #FACFCE;
     
     }
     .login-page-form{
+        height: 100%;
         background-color: white;
         border-radius: 2em 0 0 2em;
     }
     .login-page-header{
+        padding: 2em 0em;
         font-weight: bold;
+    }
+    .login-page-input{
+        &-phone,&-name,&-mail{
+            margin: 2em auto;
+            border: none;
+            border-bottom: 2px solid #E8E8E8;
+            width: 70%;
+            &:focus{
+                outline: none !important;
+                box-shadow:none !important;
+                border-color:#E8E8E8 !important;
+            }
+        }
+    }
+    .login-page-button{
+        margin: 3em 0em;
+        background-color:  #FACFCE;
+        font-weight: bold;
+        border: none;
+        width: 70%;
+        &:hover{
+            background-color:  #E8E8E8 !important;
+            color:#FACFCE !important;
+            border: #FACFCE !important
+    
+        }
     }
 }
