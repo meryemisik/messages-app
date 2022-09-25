@@ -23,226 +23,193 @@
             </div>
 
             <div class="message-page-content-left-scroll">
-                <div class="col-12 message-page-content-messages-list">
-              <div class="message-page-content-coming-message-picture">
-                <img
-                  src="../assets/image/messages/apom.jpeg"
-                  class="message-page-content-profile-picture"
-                />
-                <div class="message-page-content-coming-message-list">
-                    <div class="message-page-content-message-user">
-                        APO BEY
-                    </div>
+              <div class="col-12 message-page-content-messages-list">
+                <div class="message-page-content-coming-message-picture">
+                  <img
+                    src="../assets/image/messages/apom.jpeg"
+                    class="message-page-content-profile-picture"
+                  />
+                  <div class="message-page-content-coming-message-list">
+                    <div class="message-page-content-message-user">APO BEY</div>
                     <div class="message-page-content-message-content">
-                        Son mesaj
+                      Son mesaj
                     </div>
-                </div>
-              </div>
-
-              <div class="message-page-content-coming-message-time">
-                  <div>
-                    14:59
                   </div>
-                  <div class=" message-page-content-coming-message-count">
-                      4
+                </div>
+
+                <div class="message-page-content-coming-message-time">
+                  <div>14:59</div>
+                  <div class="message-page-content-coming-message-count">4</div>
+                </div>
+              </div>
+              <div class="col-12 message-page-content-messages-list">
+                <div class="message-page-content-coming-message-picture">
+                  <img
+                    src="../assets/image/messages/apom.jpeg"
+                    class="message-page-content-profile-picture"
+                  />
+                  <div class="message-page-content-coming-message-list">
+                    <div class="message-page-content-message-user">APO BEY</div>
+                    <div class="message-page-content-message-content">
+                      Son mesaj
+                    </div>
                   </div>
-              </div>
-             
-            </div>
-            <div class="col-12 message-page-content-messages-list">
-              <div class="message-page-content-coming-message-picture">
-                <img
-                  src="../assets/image/messages/apom.jpeg"
-                  class="message-page-content-profile-picture"
-                />
-                <div class="message-page-content-coming-message-list">
-                    <div class="message-page-content-message-user">
-                        APO BEY
-                    </div>
-                    <div class="message-page-content-message-content">
-                        Son mesaj
-                    </div>
+                </div>
+
+                <div class="message-page-content-coming-message-time">
+                  14:59
                 </div>
               </div>
-
-              <div class="message-page-content-coming-message-time">
-                  14:59
-              </div>
-             
-            </div>
-            <div class="col-12 message-page-content-messages-list">
-              <div class="message-page-content-coming-message-picture">
-                <img
-                  src="../assets/image/messages/apom.jpeg"
-                  class="message-page-content-profile-picture"
-                />
-                <div class="message-page-content-coming-message-list">
-                    <div class="message-page-content-message-user">
-                        APO BEY
-                    </div>
+              <div class="col-12 message-page-content-messages-list">
+                <div class="message-page-content-coming-message-picture">
+                  <img
+                    src="../assets/image/messages/apom.jpeg"
+                    class="message-page-content-profile-picture"
+                  />
+                  <div class="message-page-content-coming-message-list">
+                    <div class="message-page-content-message-user">APO BEY</div>
                     <div class="message-page-content-message-content">
-                        Son mesaj
+                      Son mesaj
                     </div>
+                  </div>
+                </div>
+
+                <div class="message-page-content-coming-message-time">
+                  14:59
                 </div>
               </div>
-
-              <div class="message-page-content-coming-message-time">
-                  14:59
-              </div>
-             
-            </div>
-            <div class="col-12 message-page-content-messages-list">
-              <div class="message-page-content-coming-message-picture">
-                <img
-                  src="../assets/image/messages/apom.jpeg"
-                  class="message-page-content-profile-picture"
-                />
-                <div class="message-page-content-coming-message-list">
-                    <div class="message-page-content-message-user">
-                        APO BEY
-                    </div>
+              <div class="col-12 message-page-content-messages-list">
+                <div class="message-page-content-coming-message-picture">
+                  <img
+                    src="../assets/image/messages/apom.jpeg"
+                    class="message-page-content-profile-picture"
+                  />
+                  <div class="message-page-content-coming-message-list">
+                    <div class="message-page-content-message-user">APO BEY</div>
                     <div class="message-page-content-message-content">
-                        Son mesaj
+                      Son mesaj
                     </div>
+                  </div>
+                </div>
+
+                <div class="message-page-content-coming-message-time">
+                  14:59
                 </div>
               </div>
-
-              <div class="message-page-content-coming-message-time">
-                  14:59
-              </div>
-             
-            </div>
-            <div class="col-12 message-page-content-messages-list">
-              <div class="message-page-content-coming-message-picture">
-                <img
-                  src="../assets/image/messages/apom.jpeg"
-                  class="message-page-content-profile-picture"
-                />
-                <div class="message-page-content-coming-message-list">
-                    <div class="message-page-content-message-user">
-                        APO BEY
-                    </div>
+              <div class="col-12 message-page-content-messages-list">
+                <div class="message-page-content-coming-message-picture">
+                  <img
+                    src="../assets/image/messages/apom.jpeg"
+                    class="message-page-content-profile-picture"
+                  />
+                  <div class="message-page-content-coming-message-list">
+                    <div class="message-page-content-message-user">APO BEY</div>
                     <div class="message-page-content-message-content">
-                        Son mesaj
+                      Son mesaj
                     </div>
+                  </div>
+                </div>
+
+                <div class="message-page-content-coming-message-time">
+                  14:59
                 </div>
               </div>
-
-              <div class="message-page-content-coming-message-time">
-                  14:59
-              </div>
-             
-            </div>
-            <div class="col-12 message-page-content-messages-list">
-              <div class="message-page-content-coming-message-picture">
-                <img
-                  src="../assets/image/messages/apom.jpeg"
-                  class="message-page-content-profile-picture"
-                />
-                <div class="message-page-content-coming-message-list">
-                    <div class="message-page-content-message-user">
-                        APO BEY
-                    </div>
+              <div class="col-12 message-page-content-messages-list">
+                <div class="message-page-content-coming-message-picture">
+                  <img
+                    src="../assets/image/messages/apom.jpeg"
+                    class="message-page-content-profile-picture"
+                  />
+                  <div class="message-page-content-coming-message-list">
+                    <div class="message-page-content-message-user">APO BEY</div>
                     <div class="message-page-content-message-content">
-                        Son mesaj
+                      Son mesaj
                     </div>
+                  </div>
+                </div>
+
+                <div class="message-page-content-coming-message-time">
+                  14:59
                 </div>
               </div>
-
-              <div class="message-page-content-coming-message-time">
-                  14:59
-              </div>
-             
-            </div>
-            <div class="col-12 message-page-content-messages-list">
-              <div class="message-page-content-coming-message-picture">
-                <img
-                  src="../assets/image/messages/apom.jpeg"
-                  class="message-page-content-profile-picture"
-                />
-                <div class="message-page-content-coming-message-list">
-                    <div class="message-page-content-message-user">
-                        APO BEY
-                    </div>
+              <div class="col-12 message-page-content-messages-list">
+                <div class="message-page-content-coming-message-picture">
+                  <img
+                    src="../assets/image/messages/apom.jpeg"
+                    class="message-page-content-profile-picture"
+                  />
+                  <div class="message-page-content-coming-message-list">
+                    <div class="message-page-content-message-user">APO BEY</div>
                     <div class="message-page-content-message-content">
-                        Son mesaj
+                      Son mesaj
                     </div>
+                  </div>
+                </div>
+
+                <div class="message-page-content-coming-message-time">
+                  14:59
                 </div>
               </div>
-
-              <div class="message-page-content-coming-message-time">
-                  14:59
-              </div>
-             
-            </div>
-            <div class="col-12 message-page-content-messages-list">
-              <div class="message-page-content-coming-message-picture">
-                <img
-                  src="../assets/image/messages/apom.jpeg"
-                  class="message-page-content-profile-picture"
-                />
-                <div class="message-page-content-coming-message-list">
-                    <div class="message-page-content-message-user">
-                        APO BEY
-                    </div>
+              <div class="col-12 message-page-content-messages-list">
+                <div class="message-page-content-coming-message-picture">
+                  <img
+                    src="../assets/image/messages/apom.jpeg"
+                    class="message-page-content-profile-picture"
+                  />
+                  <div class="message-page-content-coming-message-list">
+                    <div class="message-page-content-message-user">APO BEY</div>
                     <div class="message-page-content-message-content">
-                        Son mesaj
+                      Son mesaj
                     </div>
+                  </div>
+                </div>
+
+                <div class="message-page-content-coming-message-time">
+                  14:59
                 </div>
               </div>
-
-              <div class="message-page-content-coming-message-time">
-                  14:59
-              </div>
-             
-            </div>
-            <div class="col-12 message-page-content-messages-list">
-              <div class="message-page-content-coming-message-picture">
-                <img
-                  src="../assets/image/messages/apom.jpeg"
-                  class="message-page-content-profile-picture"
-                />
-                <div class="message-page-content-coming-message-list">
-                    <div class="message-page-content-message-user">
-                        APO BEY
-                    </div>
+              <div class="col-12 message-page-content-messages-list">
+                <div class="message-page-content-coming-message-picture">
+                  <img
+                    src="../assets/image/messages/apom.jpeg"
+                    class="message-page-content-profile-picture"
+                  />
+                  <div class="message-page-content-coming-message-list">
+                    <div class="message-page-content-message-user">APO BEY</div>
                     <div class="message-page-content-message-content">
-                        Son mesaj
+                      Son mesaj
                     </div>
+                  </div>
+                </div>
+
+                <div class="message-page-content-coming-message-time">
+                  14:59
                 </div>
               </div>
-
-              <div class="message-page-content-coming-message-time">
-                  14:59
-              </div>
-             
-            </div>
-            <div class="col-12 message-page-content-messages-list">
-              <div class="message-page-content-coming-message-picture">
-                <img
-                  src="../assets/image/messages/apom.jpeg"
-                  class="message-page-content-profile-picture"
-                />
-                <div class="message-page-content-coming-message-list">
-                    <div class="message-page-content-message-user">
-                        APO BEY
-                    </div>
+              <div class="col-12 message-page-content-messages-list">
+                <div class="message-page-content-coming-message-picture">
+                  <img
+                    src="../assets/image/messages/apom.jpeg"
+                    class="message-page-content-profile-picture"
+                  />
+                  <div class="message-page-content-coming-message-list">
+                    <div class="message-page-content-message-user">APO BEY</div>
                     <div class="message-page-content-message-content">
-                        Son mesaj
+                      Son mesaj
                     </div>
+                  </div>
+                </div>
+
+                <div class="message-page-content-coming-message-time">
+                  14:59
                 </div>
               </div>
-
-              <div class="message-page-content-coming-message-time">
-                  14:59
-              </div>
-             
             </div>
-            </div>
-           
           </div>
         </div>
-        <div class="col-8">sağ</div>
+        <div class="col-8 message-page-content-right">
+            sağ
+        </div>
       </div>
     </div>
   </div>

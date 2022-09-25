@@ -1,46 +1,85 @@
-.login-page{
+.login-page {
     background-color: #F5F5F5;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     flex-direction: column-reverse;
-    .login-page-content{
-        background-color:  #FACFCE;
-    
+
+    .login-page-tab-menu {
+        border: none !important;
+
+        .card-header {
+            border-bottom: none;
+            background-color: white !important;
+
+            .card-header-tabs {
+                width: fit-content;
+                margin: auto;
+                background: #f3f5f7;
+                
+                padding: 5px;
+                border-radius: 5px;
+
+                button{
+                    font-weight: bold;
+                    color: #5d5d5d;
+                   padding: 0.2em 2em;
+                    &.active{
+                        background-color: #fff;
+                        color: #1d1d1d !important;
+                       
+                    }
+                   
+                }
+            }
+        }
     }
-    .login-page-form{
-        height: 100%;
+
+    .login-page-content {
+        background-color: #FACFCE;
+
+    }
+
+    .login-page-form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         background-color: white;
         border-radius: 2em 0 0 2em;
     }
-    .login-page-header{
+
+    .login-page-header {
         padding: 2em 0em;
         font-weight: bold;
     }
-    .login-page-input{
-            margin: 2em auto;
-            border: none;
-            border-bottom: 1px solid #E8E8E8;
-            width: 60%;
-            &:focus{
-                outline: none !important;
-                box-shadow:none !important;
-                border-color:#E8E8E8 !important;
-            }
-            border-radius: 0;
-            color: #9d9d9d !important;
+
+    .login-page-input {
+        margin: 2em auto;
+        border: none;
+        border-bottom: 1px solid #E8E8E8;
+        width: 60%;
+
+        &:focus {
+            outline: none !important;
+            box-shadow: none !important;
+            border-color: #E8E8E8 !important;
+        }
+
+        border-radius: 0;
+        color: #9d9d9d !important;
     }
-    .login-page-button{
+
+    .login-page-button {
         margin: 3em 0em;
-        background-color:  #FACFCE;
+        background-color: #FACFCE;
         font-weight: bold;
         border: none;
         width: 60%;
-        &:hover{
-            background-color:  #fbc5df !important;
+
+        &:hover {
+            background-color: #fbc5df !important;
             color: white !important;
             border: #FACFCE !important
-    
         }
     }
 }

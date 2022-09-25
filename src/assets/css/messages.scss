@@ -1,12 +1,12 @@
 .message-page {
     min-height: 100vh;
-    background: linear-gradient(0deg, #F5F5F5 80%, #FACFCE 80%) !important;
+    background: linear-gradient(0deg, #e5e8ea 80%, #FACFCE 80%) !important;
     display: flex;
 
     .message-page-content {
         width: 80%;
-        height: 90vh;
-        background-color: rgb(233, 237, 239);
+        height: 80vh;
+        background-color: #f3f5f7;
         margin: auto;
     }
 
@@ -22,7 +22,9 @@
        height: 65px !important;
     }
     .message-page-content-left {
-        margin-left: 0
+        margin-left: 0;
+        height: 100%;
+        flex-wrap: nowrap;
     }
     .message-page-content-left-scroll{
         overflow-y: auto !important;
@@ -51,15 +53,15 @@
 
     .message-page-content-search {
         height: 50px;
-
+       
         padding: 0.6em;
         width: 100%;
-        border-bottom: 1px solid rgb(233, 237, 239);
+        border-bottom: 1px solid #f3f5f7;
 
 
         .message-page-content-search-input {
             height: 100%;
-            background-color: rgb(233, 237, 239);
+            background-color: #f3f5f7;
             color: #6c6c6c !important;
             border: none;
             &:focus{
@@ -74,7 +76,7 @@
 
     .message-page-content-messages-list {
         border-bottom: 1px solid rgb(233, 237, 239);
-        padding-bottom: 0.6em;
+        padding: 0.2em 0;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -83,7 +85,7 @@
         }
         .message-page-content-coming-message-picture {
             display: flex;
-            align-items: flex-end;
+            align-items: center;
         }
         .message-page-content-message-content{
             color: hsl(200deg 7% 47%);
@@ -113,6 +115,10 @@
             font-weight: bold;
             
         }
+    }
+
+    .message-page-content-right{
+        background-color: white;
     }
    
 }
