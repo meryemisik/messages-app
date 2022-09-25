@@ -10,7 +10,9 @@
                    <b-form-input v-model="text" class="login-page-input" placeholder="Your name"></b-form-input>
                    <b-form-input v-model="text" class="login-page-input" placeholder="Your mail"></b-form-input>
                    <b-form-input v-model="text" class="login-page-input" placeholder="Your phone number"></b-form-input>
-                   <b-button class="login-page-button py-2">Create Account</b-button>
+                  <router-link to="/messages">
+                    <b-button class="login-page-button py-2">Create Account</b-button>
+                  </router-link>
                 </div>
             </div>
        </div>
