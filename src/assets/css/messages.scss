@@ -5,7 +5,7 @@
 
     .message-page-content {
         width: 80%;
-        height: 80vh;
+        height: 90vh;
         background-color: rgb(233, 237, 239);
         margin: auto;
     }
@@ -18,15 +18,15 @@
         float: left;
     }
 
-    // .message-page-content-header{
-    //    border-right: red !important;
-    // }
+    .message-page-content-header{
+       height: 65px !important;
+    }
     .message-page-content-left {
         margin-left: 0
     }
     .message-page-content-left-scroll{
-        overflow-y: scroll !important;
-        height: 603px;
+        overflow-y: auto !important;
+        height: calc(100% - 50px);
         &::-webkit-scrollbar {
             width: 6px;
         }
@@ -45,17 +45,20 @@
     }
     .message-page-content-list {
         background-color: white !important;
+        height: calc(100% - 65px);
         
     }
 
     .message-page-content-search {
-        margin: 0.6em auto;
+        height: 50px;
+
+        padding: 0.6em;
         width: 100%;
-        padding-bottom: 0.6em;
         border-bottom: 1px solid rgb(233, 237, 239);
 
 
         .message-page-content-search-input {
+            height: 100%;
             background-color: rgb(233, 237, 239);
             color: #6c6c6c !important;
             border: none;
@@ -75,6 +78,9 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        &:last-child{
+            border-bottom: 0;
+        }
         .message-page-content-coming-message-picture {
             display: flex;
             align-items: flex-end;
