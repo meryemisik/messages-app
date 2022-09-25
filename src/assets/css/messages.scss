@@ -1,0 +1,112 @@
+.message-page {
+    min-height: 100vh;
+    background: linear-gradient(0deg, #F5F5F5 80%, #FACFCE 80%) !important;
+    display: flex;
+
+    .message-page-content {
+        width: 80%;
+        height: 80vh;
+        background-color: rgb(233, 237, 239);
+        margin: auto;
+    }
+
+    .message-page-content-profile-picture {
+        width: 50px;
+        height: 50px;
+        border-radius: 90%;
+        margin: 0.4em;
+        float: left;
+    }
+
+    // .message-page-content-header{
+    //    border-right: red !important;
+    // }
+    .message-page-content-left {
+        margin-left: 0
+    }
+    .message-page-content-left-scroll{
+        overflow-y: scroll !important;
+        height: 603px;
+        &::-webkit-scrollbar {
+            width: 6px;
+        }
+    
+        &::-webkit-scrollbar-track {
+            background: #FACFCE;
+        }
+    
+        &::-webkit-scrollbar-thumb {
+            background: #fbc5df ;
+        }
+    
+        &::-webkit-scrollbar-thumb:hover {
+            background: #fbc5df ;
+        }
+    }
+    .message-page-content-list {
+        background-color: white !important;
+        
+    }
+
+    .message-page-content-search {
+        margin: 0.6em auto;
+        width: 100%;
+        padding-bottom: 0.6em;
+        border-bottom: 1px solid rgb(233, 237, 239);
+
+
+        .message-page-content-search-input {
+            background-color: rgb(233, 237, 239);
+            color: #6c6c6c !important;
+            border: none;
+            &:focus{
+                outline: none !important;
+                box-shadow:none !important;
+                border-color:#E8E8E8 !important;
+            }
+        }
+       
+    }
+
+
+    .message-page-content-messages-list {
+        border-bottom: 1px solid rgb(233, 237, 239);
+        padding-bottom: 0.6em;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .message-page-content-coming-message-picture {
+            display: flex;
+            align-items: flex-end;
+        }
+        .message-page-content-message-content{
+            color: hsl(200deg 7% 47%);
+            font-size:14px;
+        }
+
+        .message-page-content-coming-message-list {
+            float: left;
+            padding-left: 1em;
+            .message-page-content-message-user {
+                color: black;
+                font-weight: bold;
+            }
+        }
+        .message-page-content-coming-message-time{
+           font-size: small;
+        }
+        .message-page-content-coming-message-count{
+            text-align: center;
+            background-color:#FACFCE;
+            font-size: 12px;
+            height: 20px;
+            width: 20px;
+            margin: auto;
+            border-radius: 100%;
+            color: white;
+            font-weight: bold;
+            
+        }
+    }
+   
+}

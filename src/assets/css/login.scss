@@ -18,27 +18,27 @@
         font-weight: bold;
     }
     .login-page-input{
-        &-phone,&-name,&-mail{
             margin: 2em auto;
             border: none;
-            border-bottom: 2px solid #E8E8E8;
-            width: 70%;
+            border-bottom: 1px solid #E8E8E8;
+            width: 60%;
             &:focus{
                 outline: none !important;
                 box-shadow:none !important;
                 border-color:#E8E8E8 !important;
             }
-        }
+            border-radius: 0;
+            color: #9d9d9d !important;
     }
     .login-page-button{
         margin: 3em 0em;
         background-color:  #FACFCE;
         font-weight: bold;
         border: none;
-        width: 70%;
+        width: 60%;
         &:hover{
-            background-color:  #E8E8E8 !important;
-            color:#FACFCE !important;
+            background-color:  #fbc5df !important;
+            color: white !important;
             border: #FACFCE !important
     
         }
