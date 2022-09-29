@@ -22,7 +22,7 @@
               />
             </div>
 
-            <div class="message-page-content-left-scroll">
+            <div class="message-page-content-left-scroll thin-scrollbar">
               <div class="col-12 message-page-content-messages-list">
                 <div class="message-page-content-coming-message-picture">
                   <img
@@ -208,7 +208,7 @@
           </div>
         </div>
         <div class="col-8 message-content">
-         <div class="message-list">
+         <div class="message-list thin-scrollbar">
           <div class="flex-column" >
             <div class="message-content-incoming">
               <span>
@@ -334,8 +334,8 @@
             </div>
           </div>
          </div>
-         <div class="row">
-          <div class="col-12 message-search">
+         <div class="">
+          <div class="message-search">
               <input
                 class="form-control"
                 type="search"
@@ -343,7 +343,7 @@
                 aria-label="Search"
                 size="small"
               />
-              <button class="send-button"> <i class="icon-cursor "></i></button>
+              <button class="send-button"> <i class="icon-paper-plane "></i></button>
              
               
             </div>

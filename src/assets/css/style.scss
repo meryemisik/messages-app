@@ -1,0 +1,17 @@
+.thin-scrollbar {
+    &::-webkit-scrollbar {
+            width: 6px;
+
+            &-track {
+                background: #fff;
+            }
+
+            &-thumb {
+                background: #f3f5f7;
+
+                &:hover {
+                    background: #f3f5f7;
+                }
+            }
+        }
+}

@@ -32,22 +32,6 @@
     .message-page-content-left-scroll {
         overflow-y: auto !important;
         height: calc(100% - 50px);
-
-        &::-webkit-scrollbar {
-            width: 6px;
-
-            &-track {
-                background: #fff;
-            }
-
-            &-thumb {
-                background: #f3f5f7;
-
-                &:hover {
-                    background: #f3f5f7;
-                }
-            }
-        }
     }
 
     .message-page-content-list {
@@ -98,7 +82,7 @@
 
         .message-page-content-message-content {
             color: hsl(200deg 7% 47%);
-            font-size: 14px;
+            font-size: 13px;
         }
 
         .message-page-content-coming-message-list {
@@ -132,23 +116,27 @@
     .message-content {
         margin-bottom: 0 !important;
         .message-search{
-           border-top: 1px solid #ccc;
+            margin-left: -10px;
            width: 98%;
             display: flex;
             justify-content: flex-start;
             align-items: center;
             padding: 5px;
             .send-button{
-                border:2px solid #fbc5df;
-                height: 35px;
-                width: 35px;
-                border-radius: 100%;
-                font-weight: bold;
-                margin-left: 1em;
+                border: 0;
+    height: 35px;
+    width: 35px;
+    border-radius: 100%;
+    font-weight: 700;
+    margin-left: 5px;
+    background: pink;
+    display: flex;
+    align-items: center;
+    justify-content: center;
             }
            .form-control{
             height: 40px ;
-            width: 90%;
+            flex:1;
             &:focus {
                 outline: none !important;
                 box-shadow: none !important;
@@ -157,6 +145,7 @@
            }
         }
         .message-list{
+            
             height:calc(100% - 50px); 
             //padding: 1em;
             padding-top: 1em;
@@ -164,21 +153,21 @@
             padding-right: 1.5em;
             overflow-y: auto;
         }
-        &::-webkit-scrollbar {
-            width: 6px;
+        // &::-webkit-scrollbar {
+        //     width: 6px;
 
-            &-track {
-                background: #fff;
-            }
+        //     &-track {
+        //         background: #fff;
+        //     }
 
-            &-thumb {
-                background: #f3f5f7;
+        //     &-thumb {
+        //         background: #f3f5f7;
 
-                &:hover {
-                    background: #f3f5f7;
-                }
-            }
-        }
+        //         &:hover {
+        //             background: #f3f5f7;
+        //         }
+        //     }
+        // }
 
         &-incoming {
             position: relative;
@@ -196,7 +185,7 @@
             display: block;
     
             span {
-                font-size: 12px;
+                font-size: 13px;
                 color: black;
                 padding: 0;
                 width: 100%;
@@ -217,15 +206,7 @@
                      
                 }
         
-                &:after {
-                    content: '';
-                    position: absolute;
-                    border-top: 15px solid pink;
-                    border-left: 15px solid transparent;
-                    border-right: 15px solid transparent;
-                    top: 0;
-                    left: -15px;
-                }
+               
             }
 
             + .message-content-sending{
@@ -268,7 +249,7 @@
             padding:0.5em 1em;
             display: block;
             span {
-                font-size: 12px;
+                font-size: 13px;
               
                 color: black;
                 padding: 0;
@@ -286,15 +267,6 @@
                 right: -17px;
             }
     
-            &:after {
-                content: '';
-                position: absolute;
-                border-top: 15px solid #ffd0ed;;
-                border-left: 15px solid transparent;
-                border-right: 15px solid transparent;
-                top: 0;
-                right: -15px;
-            }
            }
            + .message-content-incoming{
                margin-top: 1em;
@@ -310,15 +282,6 @@
                  
             }
     
-            &:after {
-                content: '';
-                position: absolute;
-                border-top: 15px solid pink;
-                border-left: 15px solid transparent;
-                border-right: 15px solid transparent;
-                top: 0;
-                left: -15px;
-            }
            }
         }
     }
