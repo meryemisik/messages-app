@@ -9,6 +9,7 @@
                 src="../assets/image/messages/profile.jpeg"
                 class="message-page-content-profile-picture"
               />
+              <b-button @click="logOut">Çıkış</b-button>
             </div>
           </div>
           <div class="row message-page-content-list">
@@ -208,134 +209,125 @@
           </div>
         </div>
         <div class="col-8 message-content">
-         <div class="message-list thin-scrollbar">
-          <div class="flex-column" >
-            <div class="message-content-incoming">
-              <span>
-                Lorem Ipsum,
-                
-              </span>
-            </div>
-            <div class="message-content-incoming">
-              <span>
-                Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır
-                metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir
-                
-              </span>
-            </div>
-            <div class="message-content-sending">
-              <span>   Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır
-                metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir
-               </span>
-            </div>
-            <div class="message-content-sending">
-              <span>   Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır
-                metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir
-               </span>
-            </div>
+          <div class="message-list thin-scrollbar">
+            <div class="flex-column">
+              <div class="message-content-incoming">
+                <span> Lorem Ipsum, </span>
+              </div>
+              <div class="message-content-incoming">
+                <span>
+                  Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır
+                  metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir
+                </span>
+              </div>
+              <div class="message-content-sending">
+                <span>
+                  Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır
+                  metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir
+                </span>
+              </div>
+              <div class="message-content-sending">
+                <span>
+                  Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır
+                  metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir
+                </span>
+              </div>
 
-            <div class="message-content-incoming">
-              <span>
-                Lorem Ipsum,
-                
-              </span>
-            </div>
-            <div class="message-content-incoming">
-              <span>
-                Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır
-                metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir
-                
-              </span>
-            </div>
-            <div class="message-content-incoming">
-              <span>
-                Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır
-                metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir
-                
-              </span>
-            </div>
-            <div class="message-content-sending">
-              <span>   Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır
-                metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir
-               </span>
-            </div>
-            <div class="message-content-sending">
-              <span>   Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır
-                metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir
-               </span>
-            </div>
+              <div class="message-content-incoming">
+                <span> Lorem Ipsum, </span>
+              </div>
+              <div class="message-content-incoming">
+                <span>
+                  Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır
+                  metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir
+                </span>
+              </div>
+              <div class="message-content-incoming">
+                <span>
+                  Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır
+                  metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir
+                </span>
+              </div>
+              <div class="message-content-sending">
+                <span>
+                  Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır
+                  metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir
+                </span>
+              </div>
+              <div class="message-content-sending">
+                <span>
+                  Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır
+                  metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir
+                </span>
+              </div>
 
-            <div class="message-content-incoming">
-              <span>
-                Lorem Ipsum,
-                
-              </span>
-            </div>
-            <div class="message-content-sending">
-              <span>   Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır
-                metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir
-               </span>
-            </div>
-            <div class="message-content-sending">
-              <span>   Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır
-                metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir
-               </span>
-            </div>
+              <div class="message-content-incoming">
+                <span> Lorem Ipsum, </span>
+              </div>
+              <div class="message-content-sending">
+                <span>
+                  Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır
+                  metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir
+                </span>
+              </div>
+              <div class="message-content-sending">
+                <span>
+                  Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır
+                  metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir
+                </span>
+              </div>
 
-            <div class="message-content-incoming">
-              <span>
-                Lorem Ipsum,
-                
-              </span>
-            </div>
-            <div class="message-content-sending">
-              <span>   Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır
-                metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir
-               </span>
-            </div>
-            <div class="message-content-sending">
-              <span>   Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır
-                metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir
-               </span>
-            </div>
+              <div class="message-content-incoming">
+                <span> Lorem Ipsum, </span>
+              </div>
+              <div class="message-content-sending">
+                <span>
+                  Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır
+                  metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir
+                </span>
+              </div>
+              <div class="message-content-sending">
+                <span>
+                  Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır
+                  metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir
+                </span>
+              </div>
 
-            <div class="message-content-incoming">
-              <span>
-                Lorem Ipsum,
-                
-              </span>
-            </div>
-            <div class="message-content-sending">
-              <span>   Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır
-                metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir
-               </span>
-            </div>
-            <div class="message-content-sending">
-              <span>   Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır
-                metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir
-               </span>
-            </div>
+              <div class="message-content-incoming">
+                <span> Lorem Ipsum, </span>
+              </div>
+              <div class="message-content-sending">
+                <span>
+                  Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır
+                  metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir
+                </span>
+              </div>
+              <div class="message-content-sending">
+                <span>
+                  Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır
+                  metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir
+                </span>
+              </div>
 
-            <div class="message-content-incoming">
-              <span>
-                Lorem Ipsum,
-                
-              </span>
-            </div>
-            <div class="message-content-sending">
-              <span>   Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır
-                metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir
-               </span>
-            </div>
-            <div class="message-content-sending">
-              <span>   Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır
-                metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir
-               </span>
+              <div class="message-content-incoming">
+                <span> Lorem Ipsum, </span>
+              </div>
+              <div class="message-content-sending">
+                <span>
+                  Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır
+                  metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir
+                </span>
+              </div>
+              <div class="message-content-sending">
+                <span>
+                  Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır
+                  metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir
+                </span>
+              </div>
             </div>
           </div>
-         </div>
-         <div class="">
-          <div class="message-search">
+          <div class="">
+            <div class="message-search">
               <input
                 class="form-control"
                 type="search"
@@ -343,19 +335,52 @@
                 aria-label="Search"
                 size="small"
               />
-              <button class="send-button"> <i class="icon-paper-plane "></i></button>
-             
-              
+              <button class="send-button">
+                <i class="icon-paper-plane"></i>
+              </button>
             </div>
-         </div>
-          
+          </div>
         </div>
-        
-       
       </div>
     </div>
   </div>
 </template>
+
+<script>
+import {
+  auth, signOut,
+} from "../firebase-config/index";
+export default {
+  data() {
+    return {};
+  },
+  created() {
+   console.log("test",auth.currentUser)
+    
+  },
+  mounted() {
+    if (JSON.parse(localStorage.getItem(user)) == undefined) {
+      this.$router.push("/");
+    }
+  },
+  methods: {
+    logOut() {
+      signOut(auth)
+        .then(() => {
+          console.log("succes")
+         // this.$router.push("/");
+        
+          localStorage.removeItem('user')
+          this.$router.push("/");
+        })
+        .catch((error) => {
+          console.log("error",error)
+        });
+    },
+  },
+};
+</script>
+
 <style lang="scss">
 @import "../assets/css/messages.scss";
 </style>

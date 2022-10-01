@@ -87,7 +87,6 @@
 
         .message-page-content-coming-message-list {
             float: left;
-            //padding-left: 1em;
 
             .message-page-content-message-user {
                 color: black;
@@ -115,174 +114,156 @@
 
     .message-content {
         margin-bottom: 0 !important;
-        .message-search{
+
+        .message-search {
             margin-left: -10px;
-           width: 98%;
             display: flex;
             justify-content: flex-start;
             align-items: center;
             padding: 5px;
-            .send-button{
+
+            .send-button {
                 border: 0;
-    height: 35px;
-    width: 35px;
-    border-radius: 100%;
-    font-weight: 700;
-    margin-left: 5px;
-    background: pink;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+                height: 35px;
+                width: 35px;
+                border-radius: 100%;
+                font-weight: 700;
+                margin-left: 5px;
+                background: pink;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
-           .form-control{
-            height: 40px ;
-            flex:1;
-            &:focus {
-                outline: none !important;
-                box-shadow: none !important;
-                border-color: #E8E8E8 !important;
+
+            .form-control {
+                height: 40px;
+                flex: 1;
+
+                &:focus {
+                    outline: none !important;
+                    box-shadow: none !important;
+                    border-color: #E8E8E8 !important;
+                }
             }
-           }
         }
-        .message-list{
-            
-            height:calc(100% - 50px); 
-            //padding: 1em;
+
+        .message-list {
+
+            height: calc(100% - 50px);
             padding-top: 1em;
             padding-left: 1em;
             padding-right: 1.5em;
             overflow-y: auto;
         }
-        // &::-webkit-scrollbar {
-        //     width: 6px;
-
-        //     &-track {
-        //         background: #fff;
-        //     }
-
-        //     &-thumb {
-        //         background: #f3f5f7;
-
-        //         &:hover {
-        //             background: #f3f5f7;
-        //         }
-        //     }
-        // }
-
         &-incoming {
             position: relative;
             margin-left: 0.1em;
             margin-bottom: 0.5em;
             padding: 0.5em 1em;
-            background-color: pink;
+            background-color: #29468a;
             max-width: 65%;
             width: fit-content;
             height: 100%;
             text-align: left;
             font: .9em 'Open Sans', sans-serif;
-            border: 1px solid pink;
+            border: 1px solid #29468a;
             border-radius: 10px;
             display: block;
-    
+
             span {
                 font-size: 13px;
-                color: black;
+                color: white;
                 padding: 0;
                 width: 100%;
                 height: 100%;
-    
+
             }
-    
-            &:first-child{
+
+            &:first-child {
                 &:before {
                     content: '';
                     position: absolute;
-                    border-top: 19px solid pink;
+                    border-top: 19px solid #29468a;
                     border-left: 22px solid transparent;
                     border-right: 16px solid transparent;
                     top: -1px;
                     left: -17px;
 
-                     
                 }
-        
-               
+
             }
 
-            + .message-content-sending{
+            +.message-content-sending {
                 margin-top: 1em;
+
                 &:before {
                     content: '';
                     position: absolute;
-                    border-top: 19px solid #ffd0ed;;
+                    border-top: 19px solid #699fef;
                     border-left: 22px solid transparent;
                     border-right: 16px solid transparent;
                     top: -1px;
                     right: -17px;
                 }
-        
-                &:after {
-                    content: '';
-                    position: absolute;
-                    border-top: 15px solid #ffd0ed;;
-                    border-left: 15px solid transparent;
-                    border-right: 15px solid transparent;
-                    top: 0;
-                    right: -15px;
-                }
+
             }
-    
+
         }
 
         &-sending {
+            color: red !important;
             position: relative;
             margin-bottom: 0.5em;
             margin-left: auto;
-            background-color: #ffd0ed;
+            background-color: #699fef;
             max-width: 65%;
             width: fit-content;
             height: 100%;
             text-align: left;
             font: .9em 'Open Sans', sans-serif;
-            border: 1px solid #ffd0ed;
+            border: 1px solid #699fef;
             border-radius: 10px;
-            padding:0.5em 1em;
+            padding: 0.5em 1em;
             display: block;
+
             span {
                 font-size: 13px;
-              
-                color: black;
+                color: white;
                 padding: 0;
                 width: 100%;
                 height: 100%;
             }
-           &:first-child{
-            &:before {
-                content: '';
-                position: absolute;
-                border-top: 19px solid #ffd0ed;;
-                border-left: 22px solid transparent;
-                border-right: 16px solid transparent;
-                top: -1px;
-                right: -17px;
-            }
-    
-           }
-           + .message-content-incoming{
-               margin-top: 1em;
-            &:before {
-                content: '';
-                position: absolute;
-                border-top: 19px solid pink;
-                border-left: 22px solid transparent;
-                border-right: 16px solid transparent;
-                top: -1px;
-                left: -17px;
 
-                 
+            &:first-child {
+                &:before {
+                    content: '';
+                    position: absolute;
+                    border-top: 19px solid #699fef;
+                    border-left: 22px solid transparent;
+                    border-right: 16px solid transparent;
+                    top: -1px;
+                    right: -17px;
+                    color: red;
+                }
+
             }
-    
-           }
+
+            +.message-content-incoming {
+                margin-top: 1em;
+
+                &:before {
+                    content: '';
+                    position: absolute;
+                    border-top: 19px solid #29468a;
+                    border-left: 22px solid transparent;
+                    border-right: 16px solid transparent;
+                    top: -1px;
+                    left: -17px;
+
+
+                }
+
+            }
         }
     }
 
