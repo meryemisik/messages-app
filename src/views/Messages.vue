@@ -4,12 +4,28 @@
       <div class="row message-page-content-left">
         <div class="col-4 border-end">
           <div class="row message-page-content-header">
-            <div class="col-12">
+            <div
+              class="col-12 d-flex justify-content-between align-items-center"
+            >
               <img
                 src="../assets/image/messages/profile.jpeg"
                 class="message-page-content-profile-picture"
               />
-              <b-button @click="logOut">Çıkış</b-button>
+              <div>
+                <b-dropdown
+                  size="lg"
+                  variant="link"
+                  toggle-class="text-decoration-none"
+                  no-caret
+                >
+                  <template #button-content>
+                    <i class="icon-settings btn"></i>
+                  </template>
+                  <b-dropdown-item href="#">Action</b-dropdown-item>
+                  <b-dropdown-item href="#">Another action</b-dropdown-item>
+                  <b-dropdown-item @click="logOut">Çıkış</b-dropdown-item>
+                </b-dropdown>
+              </div>
             </div>
           </div>
           <div class="row message-page-content-list">
@@ -347,19 +363,15 @@
 </template>
 
 <script>
-import {
-  auth, signOut,
-} from "../firebase-config/index";
+import { auth, signOut } from "../firebase-config/index";
 export default {
   data() {
     return {};
   },
-  created() {
-   console.log("test",auth.currentUser)
-    
-  },
+  created() {},
   mounted() {
-    if (JSON.parse(localStorage.getItem(user)) == undefined) {
+    console.log("test", auth.currentUser);
+    if (!localStorage.getItem("user")) {
       this.$router.push("/");
     }
   },
@@ -367,14 +379,12 @@ export default {
     logOut() {
       signOut(auth)
         .then(() => {
-          console.log("succes")
-         // this.$router.push("/");
-        
-          localStorage.removeItem('user')
+          console.log("logout success");
+          localStorage.removeItem("user");
           this.$router.push("/");
         })
         .catch((error) => {
-          console.log("error",error)
+          console.log("error", error);
         });
     },
   },
