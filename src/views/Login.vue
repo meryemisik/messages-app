@@ -109,7 +109,7 @@ export default {
 
   mounted() {
     this.createVerify();
-    if (JSON.parse(localStorage.getItem("user"))) {
+    if (localStorage.getItem("user")) {
       this.$router.push("/messages");
     }
   },

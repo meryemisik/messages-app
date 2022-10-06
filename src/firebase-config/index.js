@@ -6,6 +6,8 @@ import { getAuth,
   updateProfile,
   signOut
 } from "firebase/auth";
+import {  collection, getDocs } from 'firebase/firestore/lite';
+import { doc, setDoc,getFirestore } from "firebase/firestore";
 const firebaseConfig = {
   apiKey: "AIzaSyAbaCYE-1AK-cS_0K2KV96j6v441IALna8",
   authDomain: "messages-app-mapo.firebaseapp.com",
@@ -17,7 +19,9 @@ const firebaseConfig = {
 };
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore(app);
+
 auth.languageCode = "tr";
 
-export {auth, RecaptchaVerifier, signInWithPhoneNumber, updateEmail, updateProfile,signOut}
+export {auth,db, RecaptchaVerifier, signInWithPhoneNumber, updateEmail, updateProfile,signOut, getFirestore, collection, getDocs, doc, setDoc}
 

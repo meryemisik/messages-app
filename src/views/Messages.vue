@@ -350,8 +350,9 @@
                 placeholder="Send message"
                 aria-label="Search"
                 size="small"
+                v-model="inputMessageText"
               />
-              <button class="send-button">
+              <button @click="sendMessage()" class="send-button">
                 <i class="icon-paper-plane"></i>
               </button>
             </div>
@@ -363,19 +364,41 @@
 </template>
 
 <script>
-import { auth, signOut } from "../firebase-config/index";
+import { auth, signOut, collection, getDocs, db, doc, setDoc } from "../firebase-config/index";
 export default {
   data() {
-    return {};
+    return {
+      inputMessageText:null,
+    };
   },
-  created() {},
+  created() {
+    console.log()
+    console.log(Date());
+  },
   mounted() {
     console.log("test", auth.currentUser);
     if (!localStorage.getItem("user")) {
       this.$router.push("/");
     }
+    this.getCities(db);
   },
   methods: {
+   async sendMessage(){
+      console.log("mesaj içeriği ",this.inputMessageText);
+
+      await setDoc(doc(db, "messages", Date()+JSON.parse(localStorage.getItem("user")).uid), {
+        messages: this.inputMessageText,
+        createedDate: Date(),
+        sender: JSON.parse(localStorage.getItem("user")).uid,
+        
+});
+    },
+   async getCities(db) {
+      const citiesCol = collection(db, "messages");
+      const citySnapshot = await getDocs(citiesCol);
+      const cityList = citySnapshot.docs.map((doc) => doc.data());
+      console.log(cityList);
+    },
     logOut() {
       signOut(auth)
         .then(() => {
