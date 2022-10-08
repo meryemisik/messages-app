@@ -109,7 +109,7 @@ export default {
 
   mounted() {
     this.createVerify();
-    if (localStorage.getItem("user")) {
+    if (localStorage.getItem("mat-user")) {
       this.$router.push("/messages");
     }
   },
@@ -152,14 +152,14 @@ export default {
         .then((result) => {
           const user = result.user;
           console.log("user", user);
-          localStorage.setItem("user", JSON.stringify(user));
+          localStorage.setItem("mat-user", JSON.stringify(user));
 
           updateProfile(auth.currentUser, {
             displayName: this.signUpForm.name,
           });
           updateEmail(auth.currentUser, this.signUpForm.mail)
             .then(() => {
-              console.log("email güncellendi");
+              
             })
             .catch((error) => {
               console.log("mail error", error);

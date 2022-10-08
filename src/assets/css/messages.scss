@@ -86,8 +86,10 @@
         }
 
         .message-page-content-coming-message-list {
-            float: left;
-
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding-left: 10px;
             .message-page-content-message-user {
                 color: black;
                 font-weight: bold;
@@ -150,11 +152,10 @@
         .message-list {
 
             height: calc(100% - 50px);
-            padding-top: 1em;
-            padding-left: 1em;
-            padding-right: 1.5em;
+            padding: 1em 15px 0 8px;
             overflow-y: auto;
         }
+
         &-incoming {
             position: relative;
             margin-left: 0.1em;
@@ -181,13 +182,13 @@
 
             &:first-child {
                 &:before {
-                    content: '';
+                    content: "";
                     position: absolute;
-                    border-top: 19px solid #29468a;
-                    border-left: 22px solid transparent;
-                    border-right: 16px solid transparent;
+                    border-top: 20px solid #29468a;
+                    border-left: 20px solid transparent;
+                    border-right: 0;
                     top: -1px;
-                    left: -17px;
+                    left: -10px;
 
                 }
 
@@ -197,13 +198,13 @@
                 margin-top: 1em;
 
                 &:before {
-                    content: '';
+                    content: "";
                     position: absolute;
-                    border-top: 19px solid #699fef;
-                    border-left: 22px solid transparent;
-                    border-right: 16px solid transparent;
+                    border-top: 20px solid #699fef;
+                    border-left: 0;
+                    border-right: 20px solid transparent;
                     top: -1px;
-                    right: -17px;
+                    right: -10px;
                 }
 
             }
@@ -236,14 +237,13 @@
 
             &:first-child {
                 &:before {
-                    content: '';
+                    content: "";
                     position: absolute;
-                    border-top: 19px solid #699fef;
-                    border-left: 22px solid transparent;
-                    border-right: 16px solid transparent;
+                    border-top: 20px solid #699fef;
+                    border-left: 0;
+                    border-right: 20px solid transparent;
                     top: -1px;
-                    right: -17px;
-                    color: red;
+                    right: -10px;
                 }
 
             }
@@ -252,13 +252,13 @@
                 margin-top: 1em;
 
                 &:before {
-                    content: '';
+                    content: "";
                     position: absolute;
-                    border-top: 19px solid #29468a;
-                    border-left: 22px solid transparent;
-                    border-right: 16px solid transparent;
+                    border-top: 20px solid #29468a;
+                    border-left: 20px solid transparent;
+                    border-right: 0;
                     top: -1px;
-                    left: -17px;
+                    left: -10px;
 
 
                 }

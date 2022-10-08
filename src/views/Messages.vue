@@ -227,118 +227,16 @@
         <div class="col-8 message-content">
           <div class="message-list thin-scrollbar">
             <div class="flex-column">
-              <div class="message-content-incoming">
-                <span> Lorem Ipsum, </span>
-              </div>
-              <div class="message-content-incoming">
-                <span>
-                  Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır
-                  metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir
-                </span>
-              </div>
-              <div class="message-content-sending">
-                <span>
-                  Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır
-                  metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir
-                </span>
-              </div>
-              <div class="message-content-sending">
-                <span>
-                  Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır
-                  metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir
-                </span>
-              </div>
-
-              <div class="message-content-incoming">
-                <span> Lorem Ipsum, </span>
-              </div>
-              <div class="message-content-incoming">
-                <span>
-                  Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır
-                  metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir
-                </span>
-              </div>
-              <div class="message-content-incoming">
-                <span>
-                  Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır
-                  metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir
-                </span>
-              </div>
-              <div class="message-content-sending">
-                <span>
-                  Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır
-                  metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir
-                </span>
-              </div>
-              <div class="message-content-sending">
-                <span>
-                  Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır
-                  metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir
-                </span>
-              </div>
-
-              <div class="message-content-incoming">
-                <span> Lorem Ipsum, </span>
-              </div>
-              <div class="message-content-sending">
-                <span>
-                  Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır
-                  metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir
-                </span>
-              </div>
-              <div class="message-content-sending">
-                <span>
-                  Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır
-                  metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir
-                </span>
-              </div>
-
-              <div class="message-content-incoming">
-                <span> Lorem Ipsum, </span>
-              </div>
-              <div class="message-content-sending">
-                <span>
-                  Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır
-                  metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir
-                </span>
-              </div>
-              <div class="message-content-sending">
-                <span>
-                  Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır
-                  metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir
-                </span>
-              </div>
-
-              <div class="message-content-incoming">
-                <span> Lorem Ipsum, </span>
-              </div>
-              <div class="message-content-sending">
-                <span>
-                  Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır
-                  metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir
-                </span>
-              </div>
-              <div class="message-content-sending">
-                <span>
-                  Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır
-                  metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir
-                </span>
-              </div>
-
-              <div class="message-content-incoming">
-                <span> Lorem Ipsum, </span>
-              </div>
-              <div class="message-content-sending">
-                <span>
-                  Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır
-                  metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir
-                </span>
-              </div>
-              <div class="message-content-sending">
-                <span>
-                  Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır
-                  metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir
-                </span>
+              <div v-for="item in messageList" :key="item">
+                <div
+                  class="message-content-sending"
+                  v-if="item.sender == this.senderNumber"
+                >
+                  <span>{{ item.messages }} </span>
+                </div>
+                <div class="message-content-incoming" v-else>
+                  <span>{{ item.messages }} </span>
+                </div>
               </div>
             </div>
           </div>
@@ -364,46 +262,88 @@
 </template>
 
 <script>
-import { auth, signOut, collection, getDocs, db, doc, setDoc } from "../firebase-config/index";
+import {
+  auth,
+  signOut,
+  collection,
+  getDocs,
+  db,
+  doc,
+  setDoc,
+} from "../firebase-config/index";
 export default {
   data() {
     return {
-      inputMessageText:null,
+      messageList: [],
+      inputMessageText: null,
+      senderNumber: null,
     };
   },
-  created() {
-    console.log()
+  async created() {
+    console.log();
     console.log(Date());
+    this.getMessages(db);
+    this.senderNumber = JSON.parse(
+      localStorage.getItem("mat-user")
+    ).phoneNumber;
   },
+
   mounted() {
-    console.log("test", auth.currentUser);
-    if (!localStorage.getItem("user")) {
+    if (!localStorage.getItem("mat-user")) {
       this.$router.push("/");
     }
-    this.getCities(db);
   },
   methods: {
-   async sendMessage(){
-      console.log("mesaj içeriği ",this.inputMessageText);
-
-      await setDoc(doc(db, "messages", Date()+JSON.parse(localStorage.getItem("user")).uid), {
-        messages: this.inputMessageText,
-        createedDate: Date(),
-        sender: JSON.parse(localStorage.getItem("user")).uid,
-        
-});
+    async sendMessage() {
+      await setDoc(
+        doc(
+          db,
+          "messages",
+          Date() + JSON.parse(localStorage.getItem("mat-user")).uid
+        ),
+        {
+          messages: this.inputMessageText,
+          createdDate: Date(),
+          sender: this.senderNumber,
+          receiver: "+905541693820",
+        }
+      );
+      this.messageList.push({
+          messages: this.inputMessageText,
+          createdDate: Date(),
+          sender: this.senderNumber,
+          receiver: "+905541693820",
+        })
+        this.inputMessageText = '';
     },
-   async getCities(db) {
-      const citiesCol = collection(db, "messages");
-      const citySnapshot = await getDocs(citiesCol);
-      const cityList = citySnapshot.docs.map((doc) => doc.data());
-      console.log(cityList);
+    async getMessages(db) {
+      const messagesCol = collection(db, "messages");
+      const messagesSnapshot = await getDocs(messagesCol);
+      this.messageList = messagesSnapshot.docs
+        .filter(
+          (doc) =>
+            (doc.data().sender == "+905541693820" ||
+              doc.data().sender == this.senderNumber) &&
+            (doc.data().receiver == "+905541693820" ||
+              doc.data().receiver == this.senderNumber)
+        )
+        .map((doc) => doc.data());
+
+      messagesSnapshot.docs
+        .filter(
+          (doc) =>
+            doc.data().sender == this.senderNumber ||
+            doc.data().receiver == this.senderNumber
+        )
+        .reduce((acc, it) => {
+          console.log(acc);
+        })
+        .map((doc) => console.log("test", doc.data()));
     },
     logOut() {
       signOut(auth)
         .then(() => {
-          console.log("logout success");
-          localStorage.removeItem("user");
+          localStorage.removeItem("mat-user");
           this.$router.push("/");
         })
         .catch((error) => {

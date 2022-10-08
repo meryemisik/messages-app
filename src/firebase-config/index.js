@@ -6,8 +6,7 @@ import { getAuth,
   updateProfile,
   signOut
 } from "firebase/auth";
-import {  collection, getDocs } from 'firebase/firestore/lite';
-import { doc, setDoc,getFirestore } from "firebase/firestore";
+import { doc, setDoc,getFirestore,collection, getDocs } from "firebase/firestore";
 const firebaseConfig = {
   apiKey: "AIzaSyAbaCYE-1AK-cS_0K2KV96j6v441IALna8",
   authDomain: "messages-app-mapo.firebaseapp.com",
