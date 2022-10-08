@@ -40,14 +40,15 @@
             </div>
 
             <div class="message-page-content-left-scroll thin-scrollbar">
-              <div class="col-12 message-page-content-messages-list">
+
+              <div class="col-12 message-page-content-messages-list" v-for="item in myContacts" :key="item" @click="selectUser(item)">
                 <div class="message-page-content-coming-message-picture">
                   <img
                     src="../assets/image/messages/apom.jpeg"
                     class="message-page-content-profile-picture"
                   />
                   <div class="message-page-content-coming-message-list">
-                    <div class="message-page-content-message-user">APO BEY</div>
+                    <div class="message-page-content-message-user">{{item}}</div>
                     <div class="message-page-content-message-content">
                       Son mesaj
                     </div>
@@ -57,168 +58,6 @@
                 <div class="message-page-content-coming-message-time">
                   <div>14:59</div>
                   <div class="message-page-content-coming-message-count">4</div>
-                </div>
-              </div>
-              <div class="col-12 message-page-content-messages-list">
-                <div class="message-page-content-coming-message-picture">
-                  <img
-                    src="../assets/image/messages/apom.jpeg"
-                    class="message-page-content-profile-picture"
-                  />
-                  <div class="message-page-content-coming-message-list">
-                    <div class="message-page-content-message-user">APO BEY</div>
-                    <div class="message-page-content-message-content">
-                      Son mesaj
-                    </div>
-                  </div>
-                </div>
-
-                <div class="message-page-content-coming-message-time">
-                  14:59
-                </div>
-              </div>
-              <div class="col-12 message-page-content-messages-list">
-                <div class="message-page-content-coming-message-picture">
-                  <img
-                    src="../assets/image/messages/apom.jpeg"
-                    class="message-page-content-profile-picture"
-                  />
-                  <div class="message-page-content-coming-message-list">
-                    <div class="message-page-content-message-user">APO BEY</div>
-                    <div class="message-page-content-message-content">
-                      Son mesaj
-                    </div>
-                  </div>
-                </div>
-
-                <div class="message-page-content-coming-message-time">
-                  14:59
-                </div>
-              </div>
-              <div class="col-12 message-page-content-messages-list">
-                <div class="message-page-content-coming-message-picture">
-                  <img
-                    src="../assets/image/messages/apom.jpeg"
-                    class="message-page-content-profile-picture"
-                  />
-                  <div class="message-page-content-coming-message-list">
-                    <div class="message-page-content-message-user">APO BEY</div>
-                    <div class="message-page-content-message-content">
-                      Son mesaj
-                    </div>
-                  </div>
-                </div>
-
-                <div class="message-page-content-coming-message-time">
-                  14:59
-                </div>
-              </div>
-              <div class="col-12 message-page-content-messages-list">
-                <div class="message-page-content-coming-message-picture">
-                  <img
-                    src="../assets/image/messages/apom.jpeg"
-                    class="message-page-content-profile-picture"
-                  />
-                  <div class="message-page-content-coming-message-list">
-                    <div class="message-page-content-message-user">APO BEY</div>
-                    <div class="message-page-content-message-content">
-                      Son mesaj
-                    </div>
-                  </div>
-                </div>
-
-                <div class="message-page-content-coming-message-time">
-                  14:59
-                </div>
-              </div>
-              <div class="col-12 message-page-content-messages-list">
-                <div class="message-page-content-coming-message-picture">
-                  <img
-                    src="../assets/image/messages/apom.jpeg"
-                    class="message-page-content-profile-picture"
-                  />
-                  <div class="message-page-content-coming-message-list">
-                    <div class="message-page-content-message-user">APO BEY</div>
-                    <div class="message-page-content-message-content">
-                      Son mesaj
-                    </div>
-                  </div>
-                </div>
-
-                <div class="message-page-content-coming-message-time">
-                  14:59
-                </div>
-              </div>
-              <div class="col-12 message-page-content-messages-list">
-                <div class="message-page-content-coming-message-picture">
-                  <img
-                    src="../assets/image/messages/apom.jpeg"
-                    class="message-page-content-profile-picture"
-                  />
-                  <div class="message-page-content-coming-message-list">
-                    <div class="message-page-content-message-user">APO BEY</div>
-                    <div class="message-page-content-message-content">
-                      Son mesaj
-                    </div>
-                  </div>
-                </div>
-
-                <div class="message-page-content-coming-message-time">
-                  14:59
-                </div>
-              </div>
-              <div class="col-12 message-page-content-messages-list">
-                <div class="message-page-content-coming-message-picture">
-                  <img
-                    src="../assets/image/messages/apom.jpeg"
-                    class="message-page-content-profile-picture"
-                  />
-                  <div class="message-page-content-coming-message-list">
-                    <div class="message-page-content-message-user">APO BEY</div>
-                    <div class="message-page-content-message-content">
-                      Son mesaj
-                    </div>
-                  </div>
-                </div>
-
-                <div class="message-page-content-coming-message-time">
-                  14:59
-                </div>
-              </div>
-              <div class="col-12 message-page-content-messages-list">
-                <div class="message-page-content-coming-message-picture">
-                  <img
-                    src="../assets/image/messages/apom.jpeg"
-                    class="message-page-content-profile-picture"
-                  />
-                  <div class="message-page-content-coming-message-list">
-                    <div class="message-page-content-message-user">APO BEY</div>
-                    <div class="message-page-content-message-content">
-                      Son mesaj
-                    </div>
-                  </div>
-                </div>
-
-                <div class="message-page-content-coming-message-time">
-                  14:59
-                </div>
-              </div>
-              <div class="col-12 message-page-content-messages-list">
-                <div class="message-page-content-coming-message-picture">
-                  <img
-                    src="../assets/image/messages/apom.jpeg"
-                    class="message-page-content-profile-picture"
-                  />
-                  <div class="message-page-content-coming-message-list">
-                    <div class="message-page-content-message-user">APO BEY</div>
-                    <div class="message-page-content-message-content">
-                      Son mesaj
-                    </div>
-                  </div>
-                </div>
-
-                <div class="message-page-content-coming-message-time">
-                  14:59
                 </div>
               </div>
             </div>
@@ -274,9 +113,11 @@ import {
 export default {
   data() {
     return {
+      myContacts:[],
       messageList: [],
       inputMessageText: null,
       senderNumber: null,
+      receiverNumber:null,
     };
   },
   async created() {
@@ -294,6 +135,10 @@ export default {
     }
   },
   methods: {
+    selectUser(phone){
+      this.receiverNumber = phone;
+      this.getMessages(db);
+    },
     async sendMessage() {
       await setDoc(
         doc(
@@ -305,14 +150,14 @@ export default {
           messages: this.inputMessageText,
           createdDate: Date(),
           sender: this.senderNumber,
-          receiver: "+905541693820",
+          receiver: this.receiverNumber,
         }
       );
       this.messageList.push({
           messages: this.inputMessageText,
           createdDate: Date(),
           sender: this.senderNumber,
-          receiver: "+905541693820",
+          receiver: this.receiverNumber,
         })
         this.inputMessageText = '';
     },
@@ -322,9 +167,9 @@ export default {
       this.messageList = messagesSnapshot.docs
         .filter(
           (doc) =>
-            (doc.data().sender == "+905541693820" ||
+            (doc.data().sender == this.receiverNumber ||
               doc.data().sender == this.senderNumber) &&
-            (doc.data().receiver == "+905541693820" ||
+            (doc.data().receiver == this.receiverNumber||
               doc.data().receiver == this.senderNumber)
         )
         .map((doc) => doc.data());
@@ -335,10 +180,19 @@ export default {
             doc.data().sender == this.senderNumber ||
             doc.data().receiver == this.senderNumber
         )
-        .reduce((acc, it) => {
-          console.log(acc);
-        })
-        .map((doc) => console.log("test", doc.data()));
+        .map((doc) => {
+          if(doc.data().sender == this.senderNumber){
+            if(!this.myContacts.includes(doc.data().receiver)){
+              this.myContacts.push(doc.data().receiver);
+            }
+           
+          }
+          if(doc.data().receiver == this.senderNumber){
+            if(!this.myContacts.includes(doc.data().sender)){
+              this.myContacts.push(doc.data().sender);
+            }
+          }
+        });
     },
     logOut() {
       signOut(auth)
