@@ -116,7 +116,17 @@
 
     .message-content {
         margin-bottom: 0 !important;
-
+        .messages-time{
+            opacity: .5;
+            font-size: 10px; 
+            display: flex;
+            justify-content: flex-end;
+            padding-top: 2px;
+        }
+        .messages-date{
+            color:#808080;
+            font-size: 12px;
+        }
         .message-search {
             margin-left: -10px;
             display: flex;

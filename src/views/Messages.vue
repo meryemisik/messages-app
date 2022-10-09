@@ -40,15 +40,21 @@
             </div>
 
             <div class="message-page-content-left-scroll thin-scrollbar">
-
-              <div class="col-12 message-page-content-messages-list" v-for="item in myContacts" :key="item" @click="selectUser(item)">
+              <div
+                class="col-12 message-page-content-messages-list"
+                v-for="item in myContacts"
+                :key="item"
+                @click="selectUser(item)"
+              >
                 <div class="message-page-content-coming-message-picture">
                   <img
                     src="../assets/image/messages/apom.jpeg"
                     class="message-page-content-profile-picture"
                   />
                   <div class="message-page-content-coming-message-list">
-                    <div class="message-page-content-message-user">{{item}}</div>
+                    <div class="message-page-content-message-user">
+                      {{ item }}
+                    </div>
                     <div class="message-page-content-message-content">
                       Son mesaj
                     </div>
@@ -66,15 +72,24 @@
         <div class="col-8 message-content">
           <div class="message-list thin-scrollbar">
             <div class="flex-column">
-              <div v-for="item in messageList" :key="item">
+              <div v-for="item in messageList" :key="item" >
+              <span class="messages-date">{{setData(item.createdDate)}}</span>
                 <div
                   class="message-content-sending"
                   v-if="item.sender == this.senderNumber"
                 >
                   <span>{{ item.messages }} </span>
+                  <span class="messages-time">{{ new Date(item.createdDate).getHours() }}:{{
+                      new Date(item.createdDate).getMinutes()
+                    }}</span>
                 </div>
                 <div class="message-content-incoming" v-else>
                   <span>{{ item.messages }} </span>
+                  <span class="messages-time"
+                    >{{ new Date(item.createdDate).getHours() }}:{{
+                      new Date(item.createdDate).getMinutes()
+                    }}</span
+                  >
                 </div>
               </div>
             </div>
@@ -113,15 +128,18 @@ import {
 export default {
   data() {
     return {
-      myContacts:[],
+      dateOne: null,
+      dateTwo: null,
+      myContacts: [],
       messageList: [],
       inputMessageText: null,
       senderNumber: null,
-      receiverNumber:null,
+      receiverNumber: null,
+      months : ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"],
     };
   },
   async created() {
-    console.log();
+   
     console.log(Date());
     this.getMessages(db);
     this.senderNumber = JSON.parse(
@@ -135,9 +153,38 @@ export default {
     }
   },
   methods: {
-    selectUser(phone){
+    setData(test){
+      this.dateOne = test;
+      
+      if( new Date(this.dateOne).getDate() == new Date(this.dateTwo).getDate()){
+      }
+      else{
+        this.dateTwo = this.dateOne;
+        if( new Date(this.dateOne).getDate() == new Date().getDate()){
+         return 'Bugün'
+        }
+        else if(new Date(this.dateOne).getDate() == new Date().getDate() - 1){
+          return 'Dün'
+        }
+        else{
+         
+          return  `${new Date(this.dateOne).getDate()} ${ this.months[new Date(this.dateOne).getMonth()]} ${new Date(this.dateOne).getFullYear()}` 
+        }
+        
+       
+      }
+     
+    },
+    ScrollToBottom() {
+      //biz tarihi gönderirken saati ile gönderiyor muyduk
+      //window.scrollTo(0,  document.getElementsByClassName('message-list').scrollHeight);
+      //document.getElementsByClassName('thin-scrollbar').scrollTo(0, 5000);
+      //console.log(document.getElementsByClassName('message-list').scrollBy(0, 5000))
+    },
+    selectUser(phone) {
       this.receiverNumber = phone;
       this.getMessages(db);
+      this.ScrollToBottom();
     },
     async sendMessage() {
       await setDoc(
@@ -154,12 +201,13 @@ export default {
         }
       );
       this.messageList.push({
-          messages: this.inputMessageText,
-          createdDate: Date(),
-          sender: this.senderNumber,
-          receiver: this.receiverNumber,
-        })
-        this.inputMessageText = '';
+        messages: this.inputMessageText,
+        createdDate: Date(),
+        sender: this.senderNumber,
+        receiver: this.receiverNumber,
+      });
+     
+      this.inputMessageText = "";
     },
     async getMessages(db) {
       const messagesCol = collection(db, "messages");
@@ -169,11 +217,10 @@ export default {
           (doc) =>
             (doc.data().sender == this.receiverNumber ||
               doc.data().sender == this.senderNumber) &&
-            (doc.data().receiver == this.receiverNumber||
+            (doc.data().receiver == this.receiverNumber ||
               doc.data().receiver == this.senderNumber)
         )
         .map((doc) => doc.data());
-
       messagesSnapshot.docs
         .filter(
           (doc) =>
@@ -181,14 +228,13 @@ export default {
             doc.data().receiver == this.senderNumber
         )
         .map((doc) => {
-          if(doc.data().sender == this.senderNumber){
-            if(!this.myContacts.includes(doc.data().receiver)){
+          if (doc.data().sender == this.senderNumber) {
+            if (!this.myContacts.includes(doc.data().receiver)) {
               this.myContacts.push(doc.data().receiver);
             }
-           
           }
-          if(doc.data().receiver == this.senderNumber){
-            if(!this.myContacts.includes(doc.data().sender)){
+          if (doc.data().receiver == this.senderNumber) {
+            if (!this.myContacts.includes(doc.data().sender)) {
               this.myContacts.push(doc.data().sender);
             }
           }
