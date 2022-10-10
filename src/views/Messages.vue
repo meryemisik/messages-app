@@ -73,7 +73,9 @@
           <div class="message-list thin-scrollbar">
             <div class="flex-column">
               <div v-for="item in messageList" :key="item" >
-              <span class="messages-date">{{writeMessageDate(item.createdDate)}}</span>
+              <span class="messages-date" >{{writeMessageDate(item.createdDate)}}</span>
+                <input v-model="messagedateText" />
+              
                 <div
                   class="message-content-sending"
                   v-if="item.sender == this.senderNumber"
@@ -128,6 +130,8 @@ import {
 export default {
   data() {
     return {
+      messagedateText:null,
+      sayac:49,
       firstMessageDate: null,
       secondMessageDate: null,
       myContacts: [],
@@ -154,19 +158,21 @@ export default {
   },
   methods: {
     writeMessageDate(messageDate){
+      this.messagedateText=null,
       this.firstMessageDate = messageDate;
       if( new Date(this.firstMessageDate).getDate() != new Date(this.secondMessageDate).getDate()){
+      
         if( new Date(this.firstMessageDate).getDate() == new Date().getDate()){
           this.secondMessageDate = this.firstMessageDate;
-         return 'Bugün'
+         this.messagedateText= 'Bugün'
         }
         else if(new Date(this.firstMessageDate).getDate() == new Date().getDate() - 1){
           this.secondMessageDate = this.firstMessageDate;
-          return 'Dün'
+          this.messagedateText= 'Dün'
         }
         else{
           this.secondMessageDate = this.firstMessageDate;
-          return  `${new Date(this.firstMessageDate).getDate()} ${ this.months[new Date(this.firstMessageDate).getMonth()]} ${new Date(this.firstMessageDate).getFullYear()}` 
+          this.messagedateText=  `${new Date(this.firstMessageDate).getDate()} ${ this.months[new Date(this.firstMessageDate).getMonth()]} ${new Date(this.firstMessageDate).getFullYear()}` 
         }
       }
     },
