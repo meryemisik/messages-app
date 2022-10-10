@@ -166,11 +166,11 @@ export default {
           this.secondMessageDate = this.firstMessageDate;
          this.messagedateText= 'Bugün'
         }
-        else if(new Date(this.firstMessageDate).getDate() == new Date().getDate() - 1){
+        if(new Date(this.firstMessageDate).getDate() == new Date().getDate() - 1){
           this.secondMessageDate = this.firstMessageDate;
           this.messagedateText= 'Dün'
         }
-        else{
+        if( new Date(this.firstMessageDate).getDate() != new Date().getDate() && new Date(this.firstMessageDate).getDate() != new Date().getDate() - 1){
           this.secondMessageDate = this.firstMessageDate;
           this.messagedateText=  `${new Date(this.firstMessageDate).getDate()} ${ this.months[new Date(this.firstMessageDate).getMonth()]} ${new Date(this.firstMessageDate).getFullYear()}` 
         }
