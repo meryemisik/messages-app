@@ -174,7 +174,9 @@ export default {
           this.secondMessageDate = this.firstMessageDate;
           this.messagedateText=  `${new Date(this.firstMessageDate).getDate()} ${ this.months[new Date(this.firstMessageDate).getMonth()]} ${new Date(this.firstMessageDate).getFullYear()}` 
         }
+        return false;
       }
+      return false;
     },
     ScrollToBottom() {
       //window.scrollTo(0,  document.getElementsByClassName('message-list').scrollHeight);
