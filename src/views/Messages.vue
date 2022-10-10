@@ -154,32 +154,23 @@ export default {
   },
   methods: {
     writeMessageDate(messageDate){
-      console.log("===============")
-      console.log('messageDate',messageDate)
       this.firstMessageDate = messageDate;
-      
-      if( new Date(this.firstMessageDate).getDate() == new Date(this.secondMessageDate).getDate()){
-        console.log("firsMessage",this.firstMessageDate)
+      if( new Date(this.firstMessageDate).getDate() != new Date(this.secondMessageDate).getDate()){
+        if( new Date(this.firstMessageDate).getDate() == new Date().getDate()){
+          this.secondMessageDate = this.firstMessageDate;
+         return 'Bugün'
+        }
+        else if(new Date(this.firstMessageDate).getDate() == new Date().getDate() - 1){
+          this.secondMessageDate = this.firstMessageDate;
+          return 'Dün'
+        }
+        else{
+          this.secondMessageDate = this.firstMessageDate;
+          return  `${new Date(this.firstMessageDate).getDate()} ${ this.months[new Date(this.firstMessageDate).getMonth()]} ${new Date(this.firstMessageDate).getFullYear()}` 
+        }
       }
-      else{
-        this.secondMessageDate = this.firstMessageDate;
-        console.log("seconMessage",this.secondMessageDate)
-        // if( new Date(this.firstMessageDate).getDate() == new Date().getDate()){
-        //  return 'Bugün'
-        // }
-        // else if(new Date(this.firstMessageDate).getDate() == new Date().getDate() - 1){
-        //   return 'Dün'
-        // }
-        // else{
-        //   return  `${new Date(this.firstMessageDate).getDate()} ${ this.months[new Date(this.firstMessageDate).getMonth()]} ${new Date(this.firstMessageDate).getFullYear()}` 
-        // }
-        
-       
-      }
-     
     },
     ScrollToBottom() {
-      //biz tarihi gönderirken saati ile gönderiyor muyduk
       //window.scrollTo(0,  document.getElementsByClassName('message-list').scrollHeight);
       //document.getElementsByClassName('thin-scrollbar').scrollTo(0, 5000);
       //console.log(document.getElementsByClassName('message-list').scrollBy(0, 5000))
