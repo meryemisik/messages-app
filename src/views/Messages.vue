@@ -73,7 +73,7 @@
           <div class="message-list thin-scrollbar">
             <div class="flex-column">
               <div v-for="item in messageList" :key="item" >
-              <span class="messages-date">{{setData(item.createdDate)}}</span>
+              <span class="messages-date">{{writeMessageDate(item.createdDate)}}</span>
                 <div
                   class="message-content-sending"
                   v-if="item.sender == this.senderNumber"
@@ -128,8 +128,8 @@ import {
 export default {
   data() {
     return {
-      dateOne: null,
-      dateTwo: null,
+      firstMessageDate: null,
+      secondMessageDate: null,
       myContacts: [],
       messageList: [],
       inputMessageText: null,
@@ -153,26 +153,27 @@ export default {
     }
   },
   methods: {
-    setData(test){
-      this.dateOne = test;
+    writeMessageDate(messageDate){
+      console.log('messageDate',messageDate)
+      // this.firstMessageDate = messageDate;
       
-      if( new Date(this.dateOne).getDate() == new Date(this.dateTwo).getDate()){
-      }
-      else{
-        this.dateTwo = this.dateOne;
-        if( new Date(this.dateOne).getDate() == new Date().getDate()){
-         return 'Bugün'
-        }
-        else if(new Date(this.dateOne).getDate() == new Date().getDate() - 1){
-          return 'Dün'
-        }
-        else{
+      // if( new Date(this.firstMessageDate).getDate() == new Date(this.secondMessageDate).getDate()){
+      // }
+      // else{
+      //   this.secondMessageDate = this.firstMessageDate;
+      //   if( new Date(this.firstMessageDate).getDate() == new Date().getDate()){
+      //    return 'Bugün'
+      //   }
+      //   else if(new Date(this.firstMessageDate).getDate() == new Date().getDate() - 1){
+      //     return 'Dün'
+      //   }
+      //   else{
          
-          return  `${new Date(this.dateOne).getDate()} ${ this.months[new Date(this.dateOne).getMonth()]} ${new Date(this.dateOne).getFullYear()}` 
-        }
+      //     return  `${new Date(this.firstMessageDate).getDate()} ${ this.months[new Date(this.firstMessageDate).getMonth()]} ${new Date(this.firstMessageDate).getFullYear()}` 
+      //   }
         
        
-      }
+      // }
      
     },
     ScrollToBottom() {
