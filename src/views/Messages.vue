@@ -154,26 +154,28 @@ export default {
   },
   methods: {
     writeMessageDate(messageDate){
+      console.log("===============")
       console.log('messageDate',messageDate)
-      // this.firstMessageDate = messageDate;
+      this.firstMessageDate = messageDate;
       
-      // if( new Date(this.firstMessageDate).getDate() == new Date(this.secondMessageDate).getDate()){
-      // }
-      // else{
-      //   this.secondMessageDate = this.firstMessageDate;
-      //   if( new Date(this.firstMessageDate).getDate() == new Date().getDate()){
-      //    return 'Bugün'
-      //   }
-      //   else if(new Date(this.firstMessageDate).getDate() == new Date().getDate() - 1){
-      //     return 'Dün'
-      //   }
-      //   else{
-         
-      //     return  `${new Date(this.firstMessageDate).getDate()} ${ this.months[new Date(this.firstMessageDate).getMonth()]} ${new Date(this.firstMessageDate).getFullYear()}` 
-      //   }
+      if( new Date(this.firstMessageDate).getDate() == new Date(this.secondMessageDate).getDate()){
+        console.log("firsMessage",this.firstMessageDate)
+      }
+      else{
+        this.secondMessageDate = this.firstMessageDate;
+        console.log("seconMessage",this.secondMessageDate)
+        // if( new Date(this.firstMessageDate).getDate() == new Date().getDate()){
+        //  return 'Bugün'
+        // }
+        // else if(new Date(this.firstMessageDate).getDate() == new Date().getDate() - 1){
+        //   return 'Dün'
+        // }
+        // else{
+        //   return  `${new Date(this.firstMessageDate).getDate()} ${ this.months[new Date(this.firstMessageDate).getMonth()]} ${new Date(this.firstMessageDate).getFullYear()}` 
+        // }
         
        
-      // }
+      }
      
     },
     ScrollToBottom() {
