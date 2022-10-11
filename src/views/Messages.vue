@@ -3,11 +3,41 @@
     <div class="message-page-content">
       <div class="row message-page-content-left">
         <div class="col-4 border-end">
+          <div
+            v-show="myProfileDetailVisible"
+            class="row col-4 my-profile-detail"
+          >
+            <div class="profile-top-menu" @click="backMessageList">
+              <span class="d-flex align-items-center cursor-pointer"
+                ><i class="icon icon-arrow-left me-2"></i> Profil</span
+              >
+            </div>
+            <div class="profile-picture">
+              <img
+                src="../assets/image/messages/profile.jpeg"
+                class="profile-img"
+              />
+            </div>
+            <div class="update-name">
+              <input v-model="myProfileName" :disabled="myProfileNameDisplay" />
+              <i
+                class="icon-pencil"
+                @click="myProfileNameEdit"
+                v-show="myProfileNameDisplay"
+              ></i>
+              <i
+                class="icon-check"
+                @click="myProfileNameSave"
+                v-show="!myProfileNameDisplay"
+              ></i>
+            </div>
+          </div>
           <div class="row message-page-content-header">
             <div
               class="col-12 d-flex justify-content-between align-items-center"
             >
               <img
+                @click="myProfileDetail"
                 src="../assets/image/messages/profile.jpeg"
                 class="message-page-content-profile-picture"
               />
@@ -22,7 +52,9 @@
                     <i class="icon-settings btn"></i>
                   </template>
                   <b-dropdown-item href="#">Action</b-dropdown-item>
-                  <b-dropdown-item href="#">Another action</b-dropdown-item>
+                  <b-dropdown-item @click="myProfileDetailVisible = true"
+                    >Profil</b-dropdown-item
+                  >
                   <b-dropdown-item @click="logOut">Çıkış</b-dropdown-item>
                 </b-dropdown>
               </div>
@@ -51,7 +83,9 @@
                     src="../assets/image/messages/apom.jpeg"
                     class="message-page-content-profile-picture"
                   />
-                  <div class="message-page-content-coming-message-list">
+                  <div
+                    class="message-page-content-coming-message-list cursor-pointer"
+                  >
                     <div class="message-page-content-message-user">
                       {{ item }}
                     </div>
@@ -69,35 +103,54 @@
             </div>
           </div>
         </div>
-        <div class="col-8 message-content">
+        <div class="col-8 chat-bg" v-show="!isChatActive">
+          <img src="../assets/image/messages/chat-bg.png" />
+        </div>
+        <div class="col-8 message-content" v-show="isChatActive">
+          <div class="user-profile-top-menu">
+            <div
+              @click="userProfileDetail"
+              class="d-flex align-items-center cursor-pointer"
+            >
+              <img
+                src="../assets/image/messages/apom.jpeg"
+                class="message-page-content-profile-picture"
+              />
+              {{ this.receiverNumber }}
+            </div>
+            <div class="user-popup-button">
+              <b-dropdown
+                size="lg"
+                variant="link"
+                toggle-class="text-decoration-none"
+                no-caret
+              >
+                <template #button-content>
+                  <i class="icon-options-vertical"></i>
+                </template>
+                <b-dropdown-item @click="userProfileDetailVisible = true"
+                  >Kişi Bilgisi</b-dropdown-item
+                >
+                <b-dropdown-item @click="isChatActive = false"
+                  >Sohbeti Kapat</b-dropdown-item
+                >
+              </b-dropdown>
+            </div>
+          </div>
           <div class="message-list thin-scrollbar">
             <div class="flex-column">
-            
-              <span v-html="mesajListesi"></span>
-
-              <!--<div v-for="item in messageList" :key="item" >
-              <span class="messages-date" ></span>
-                <input v-model="messagedateText" />
-              {{this.messageList}}
-                <div
-                  class="message-content-sending"
-                  v-if="item.sender == this.senderNumber"
-                >
-                  <span>{{ item.messages }} </span>
-                  <span class="messages-time">{{ new Date(item.createdDate).getHours() }}:{{
-                      new Date(item.createdDate).getMinutes()
-                    }}</span>
-                </div>
-                <div class="message-content-incoming" v-else>
-                  <span>{{ item.messages }} </span>
-                  <span class="messages-time"
-                    >{{ new Date(item.createdDate).getHours() }}:{{
-                      new Date(item.createdDate).getMinutes()
-                    }}</span
-                  >
-                </div>
-              </div>
--->
+              <span v-html="currentMessageList"></span>
+            </div>
+          </div>
+          <div
+            v-show="userProfileDetailVisible"
+            class="col-4 user-profile-detail"
+          >
+            <div
+              class="user-detail-close-button cursor-pointer"
+              @click="userDetailClose"
+            >
+              <i class="icon-close"></i>
             </div>
           </div>
           <div class="">
@@ -134,8 +187,12 @@ import {
 export default {
   data() {
     return {
-      messagedateText:null,
-      sayac:1,
+      isChatActive: false,
+      userProfileDetailVisible: false,
+      myProfileNameDisplay: true,
+      myProfileName: null,
+      myProfileDetailVisible: false,
+      messagedateText: null,
       firstMessageDate: null,
       secondMessageDate: null,
       myContacts: [],
@@ -143,15 +200,27 @@ export default {
       inputMessageText: null,
       senderNumber: null,
       receiverNumber: null,
-      mesajListesi: null,
-      months : ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"],
+      currentMessageList: null,
+      months: [
+        "Ocak",
+        "Şubat",
+        "Mart",
+        "Nisan",
+        "Mayıs",
+        "Haziran",
+        "Temmuz",
+        "Ağustos",
+        "Eylül",
+        "Ekim",
+        "Kasım",
+        "Aralık",
+      ],
     };
   },
   async created() {
-
-    
-   
-    console.log(Date());
+    this.myProfileName = JSON.parse(
+      localStorage.getItem("mat-user")
+    ).displayName;
     this.getMessages(db);
     this.senderNumber = JSON.parse(
       localStorage.getItem("mat-user")
@@ -162,29 +231,49 @@ export default {
     if (!localStorage.getItem("mat-user")) {
       this.$router.push("/");
     }
-    console.log("messageList ", this.messageList)
   },
   methods: {
-    writeMessageDate(messageDate){
-      console.log("sayac ", this.sayac++)
+    userDetailClose() {
+      this.userProfileDetailVisible = false;
+    },
+    userProfileDetail() {
+      this.userProfileDetailVisible = true;
+    },
+    backMessageList() {
+      this.myProfileDetailVisible = false;
+    },
+    myProfileNameSave() {
+      this.myProfileNameDisplay = true;
+    },
+    myProfileNameEdit() {
+      this.myProfileNameDisplay = false;
+    },
+    myProfileDetail() {
+      this.myProfileDetailVisible = true;
+    },
+    writeMessageDate(messageDate) {
       this.firstMessageDate = messageDate;
-      if( new Date(this.firstMessageDate).getDate() != new Date(this.secondMessageDate).getDate()){
-      
-        if( new Date(this.firstMessageDate).getDate() == new Date().getDate()){
+      if (
+        new Date(this.firstMessageDate).getDate() !=
+        new Date(this.secondMessageDate).getDate()
+      ) {
+        if (new Date(this.firstMessageDate).getDate() == new Date().getDate()) {
           this.secondMessageDate = this.firstMessageDate;
-          return 'Bugün'
-        }
-        else if(new Date(this.firstMessageDate).getDate() == new Date().getDate() - 1){
+          return "Bugün";
+        } else if (
+          new Date(this.firstMessageDate).getDate() ==
+          new Date().getDate() - 1
+        ) {
           this.secondMessageDate = this.firstMessageDate;
-          return 'Dün'
-        }
-        else{
+          return "Dün";
+        } else {
           this.secondMessageDate = this.firstMessageDate;
-          return  `${new Date(this.firstMessageDate).getDate()} ${ this.months[new Date(this.firstMessageDate).getMonth()]} ${new Date(this.firstMessageDate).getFullYear()}` 
+          return `${new Date(this.firstMessageDate).getDate()} ${
+            this.months[new Date(this.firstMessageDate).getMonth()]
+          } ${new Date(this.firstMessageDate).getFullYear()}`;
         }
-      }
-      else{
-        return ''
+      } else {
+        return "";
       }
     },
     ScrollToBottom() {
@@ -193,29 +282,29 @@ export default {
       //console.log(document.getElementsByClassName('message-list').scrollBy(0, 5000))
     },
     selectUser(phone) {
+      this.isChatActive = true;
       this.receiverNumber = phone;
       this.getMessages(db);
       this.ScrollToBottom();
-
     },
-    listMesajlar (){
-      
-      this.mesajListesi = ''; 
-this.messageList.map((item) => {
-  let className = 'incoming';
-  if(item.sender == this.senderNumber){
-    className = 'sending';
-  }
-   this.mesajListesi += `${this.writeMessageDate(item.createdDate)}<div class='message-content-${className}'>
+    listMessages() {
+      this.currentMessageList = "";
+      this.messageList.map((item) => {
+        let className = "incoming";
+        if (item.sender == this.senderNumber) {
+          className = "sending";
+        }
+        this.currentMessageList += `${this.writeMessageDate(
+          item.createdDate
+        )}<div class='message-content-${className}'>
                   <span>${item.messages}</span>
                   <span class="messages-time"
-                    >${ new Date(item.createdDate).getHours() }:${
-                      new Date(item.createdDate).getMinutes()
-                    }</span
+                    >${new Date(item.createdDate).getHours()}:${new Date(
+          item.createdDate
+        ).getMinutes()}</span
                   >
-                </div>`
-  })
-
+                </div>`;
+      });
     },
     async sendMessage() {
       await setDoc(
@@ -237,7 +326,7 @@ this.messageList.map((item) => {
         sender: this.senderNumber,
         receiver: this.receiverNumber,
       });
-     
+
       this.inputMessageText = "";
     },
     async getMessages(db) {
@@ -271,7 +360,7 @@ this.messageList.map((item) => {
             }
           }
         });
-         this.listMesajlar();
+      this.listMessages();
     },
     logOut() {
       signOut(auth)

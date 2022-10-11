@@ -3,6 +3,59 @@
     background: linear-gradient(0deg, #e5e8ea 80%, #FACFCE 80%) !important;
     display: flex;
 
+    .my-profile-detail {
+        position: absolute;
+        height: 100%;
+        z-index: 1;
+        display: flex;
+        align-content: flex-start;
+        justify-content: space-evenly;
+
+        .profile-top-menu {
+            display: flex;
+            align-items: flex-end;
+            padding: 15px;
+            background-color: white !important;
+            height: 15%;
+        }
+
+        .profile-picture {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 40%;
+            background-color: #facece;
+
+            .profile-img {
+                height: 80%;
+                border-radius: 100%;
+            }
+        }
+
+        .update-name {
+            margin-top: 10px;
+
+            input {
+
+                border: none;
+                width: 80%;
+                outline: none !important;
+                border-bottom: 1px solid black !important;
+
+                // &:focus{
+                //     
+                // }
+                &:disabled {
+                    background-color: white;
+                    pointer-events: none;
+                    color: #AAA;
+                    border: none !important;
+                }
+            }
+
+        }
+    }
+
     .message-page-content {
         width: 80%;
         height: 80vh;
@@ -24,9 +77,18 @@
     }
 
     .message-page-content-left {
+        position: relative;
         margin-left: 0;
         height: 100%;
         flex-wrap: nowrap;
+
+        .chat-bg {
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
     }
 
     .message-page-content-left-scroll {
@@ -90,6 +152,7 @@
             flex-direction: column;
             align-items: flex-start;
             padding-left: 10px;
+
             .message-page-content-message-user {
                 color: black;
                 font-weight: bold;
@@ -115,18 +178,56 @@
     }
 
     .message-content {
+        position: relative;
+
+        .user-popup-button {
+            margin-left: auto;
+
+        }
+
+        .user-profile-top-menu {
+            z-index: 1;
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            height: 60px;
+            width: calc(100% - 12px);
+            background-color: #d1d3d5;
+            display: flex;
+            align-items: center;
+        }
+
+        .user-profile-detail {
+            background-color: #a8a8a8;
+            position: absolute;
+            right: 12px;
+            top: 0;
+            z-index: 1;
+            height: 100%;
+
+            .user-detail-close-button {
+                position: absolute;
+                left: 10px;
+                top: 10px;
+            }
+        }
+
         margin-bottom: 0 !important;
-        .messages-time{
+
+        .messages-time {
             opacity: .5;
-            font-size: 10px; 
+            font-size: 10px;
             display: flex;
             justify-content: flex-end;
             padding-top: 2px;
         }
-        .messages-date{
-            color:#808080;
+
+        .messages-date {
+            color: #808080;
             font-size: 12px;
         }
+
         .message-search {
             margin-left: -10px;
             display: flex;
@@ -160,9 +261,8 @@
         }
 
         .message-list {
-
             height: calc(100% - 50px);
-            padding: 1em 15px 0 8px;
+            padding: 70px 15px 0 8px;
             overflow-y: auto;
         }
 
