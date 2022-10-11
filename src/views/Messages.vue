@@ -72,10 +72,13 @@
         <div class="col-8 message-content">
           <div class="message-list thin-scrollbar">
             <div class="flex-column">
-              <div v-for="item in messageList" :key="item" >
-              <span class="messages-date" >{{writeMessageDate(item.createdDate)}}</span>
+            
+              <span v-html="mesajListesi"></span>
+
+              <!--<div v-for="item in messageList" :key="item" >
+              <span class="messages-date" ></span>
                 <input v-model="messagedateText" />
-              
+              {{this.messageList}}
                 <div
                   class="message-content-sending"
                   v-if="item.sender == this.senderNumber"
@@ -94,6 +97,7 @@
                   >
                 </div>
               </div>
+-->
             </div>
           </div>
           <div class="">
@@ -131,7 +135,7 @@ export default {
   data() {
     return {
       messagedateText:null,
-      sayac:49,
+      sayac:1,
       firstMessageDate: null,
       secondMessageDate: null,
       myContacts: [],
@@ -139,10 +143,13 @@ export default {
       inputMessageText: null,
       senderNumber: null,
       receiverNumber: null,
+      mesajListesi: null,
       months : ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"],
     };
   },
   async created() {
+
+    
    
     console.log(Date());
     this.getMessages(db);
@@ -155,28 +162,30 @@ export default {
     if (!localStorage.getItem("mat-user")) {
       this.$router.push("/");
     }
+    console.log("messageList ", this.messageList)
   },
   methods: {
     writeMessageDate(messageDate){
-      this.messagedateText=null,
+      console.log("sayac ", this.sayac++)
       this.firstMessageDate = messageDate;
       if( new Date(this.firstMessageDate).getDate() != new Date(this.secondMessageDate).getDate()){
       
         if( new Date(this.firstMessageDate).getDate() == new Date().getDate()){
           this.secondMessageDate = this.firstMessageDate;
-         this.messagedateText= 'Bugün'
+          return 'Bugün'
         }
-        if(new Date(this.firstMessageDate).getDate() == new Date().getDate() - 1){
+        else if(new Date(this.firstMessageDate).getDate() == new Date().getDate() - 1){
           this.secondMessageDate = this.firstMessageDate;
-          this.messagedateText= 'Dün'
+          return 'Dün'
         }
-        if( new Date(this.firstMessageDate).getDate() != new Date().getDate() && new Date(this.firstMessageDate).getDate() != new Date().getDate() - 1){
+        else{
           this.secondMessageDate = this.firstMessageDate;
-          this.messagedateText=  `${new Date(this.firstMessageDate).getDate()} ${ this.months[new Date(this.firstMessageDate).getMonth()]} ${new Date(this.firstMessageDate).getFullYear()}` 
+          return  `${new Date(this.firstMessageDate).getDate()} ${ this.months[new Date(this.firstMessageDate).getMonth()]} ${new Date(this.firstMessageDate).getFullYear()}` 
         }
-        return false;
       }
-      return false;
+      else{
+        return ''
+      }
     },
     ScrollToBottom() {
       //window.scrollTo(0,  document.getElementsByClassName('message-list').scrollHeight);
@@ -187,6 +196,26 @@ export default {
       this.receiverNumber = phone;
       this.getMessages(db);
       this.ScrollToBottom();
+
+    },
+    listMesajlar (){
+      
+      this.mesajListesi = ''; 
+this.messageList.map((item) => {
+  let className = 'incoming';
+  if(item.sender == this.senderNumber){
+    className = 'sending';
+  }
+   this.mesajListesi += `${this.writeMessageDate(item.createdDate)}<div class='message-content-${className}'>
+                  <span>${item.messages}</span>
+                  <span class="messages-time"
+                    >${ new Date(item.createdDate).getHours() }:${
+                      new Date(item.createdDate).getMinutes()
+                    }</span
+                  >
+                </div>`
+  })
+
     },
     async sendMessage() {
       await setDoc(
@@ -223,6 +252,7 @@ export default {
               doc.data().receiver == this.senderNumber)
         )
         .map((doc) => doc.data());
+
       messagesSnapshot.docs
         .filter(
           (doc) =>
@@ -241,6 +271,7 @@ export default {
             }
           }
         });
+         this.listMesajlar();
     },
     logOut() {
       signOut(auth)
