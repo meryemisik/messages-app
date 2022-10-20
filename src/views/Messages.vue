@@ -2,7 +2,7 @@
   <div class="message-page">
     <div class="message-page-content">
       <div class="row message-page-content-left">
-        <div class="col-4 border-end">
+        <div class="col-4 border-end position-relative">
           <div
             v-show="myProfileDetailVisible"
             class="row col-4 my-profile-detail"
@@ -51,7 +51,7 @@
                   <template #button-content>
                     <i class="icon-settings btn"></i>
                   </template>
-                  <b-dropdown-item href="#">Action</b-dropdown-item>
+                  <b-dropdown-item @click="createNewMessagePopup = true">Yeni Sohbet</b-dropdown-item>
                   <b-dropdown-item @click="myProfileDetailVisible = true"
                     >Profil</b-dropdown-item
                   >
@@ -101,6 +101,11 @@
                 </div>
               </div>
             </div>
+          </div>
+          <div>
+            <button class="create-new-messages" @click="this.createNewMessagePopup = true">
+              <i class="icon-user-follow"></i>
+            </button>
           </div>
         </div>
         <div class="col-8 chat-bg" v-show="!isChatActive">
@@ -171,6 +176,23 @@
         </div>
       </div>
     </div>
+
+    <div>
+     
+
+      <b-modal v-model="createNewMessagePopup" centered title="Create New Messages" hide-footer>
+        <b-form-input v-model="receiverPhoneNumber" placeholder="Enter receiver phone number"></b-form-input>
+        <b-form-textarea
+        class="mt-2"
+      id="textarea"
+      v-model="messageContent"
+      placeholder="Enter your messages"
+      rows="3"
+      max-rows="6"
+    ></b-form-textarea>
+    <b-button class="btn-sm mt-2" variant="success" @click="createNewMessage()">Button</b-button>
+      </b-modal>
+    </div>
   </div>
 </template>
 
@@ -187,6 +209,9 @@ import {
 export default {
   data() {
     return {
+      createNewMessagePopup:false,
+      messageContent:null,
+      receiverPhoneNumber:null,
       isChatActive: false,
       userProfileDetailVisible: false,
       myProfileNameDisplay: true,
@@ -233,6 +258,36 @@ export default {
     }
   },
   methods: {
+   async createNewMessage(){
+     console.log(this.receiverPhoneNumber.trim())
+      if(( this.receiverPhoneNumber.trim().length != 0) && (this.messageContent.trim().length != 0)){
+       
+      await setDoc(
+        doc(
+          db,
+          "messages",
+          Date() + JSON.parse(localStorage.getItem("mat-user")).uid
+        ),
+        {
+          messages: this.messageContent,
+          createdDate: Date(),
+          sender: this.senderNumber,
+          receiver: this.receiverPhoneNumber,
+        }
+
+
+      );
+      this.createNewMessagePopup = false;
+      this.getMessages(db);
+      this.selectUser(this.receiverPhoneNumber);
+      this.receiverPhoneNumber = null;
+      this.messageContent=null;
+      }
+      else{
+        alert("alanları doldurunuz")
+      }
+     
+    },
     userDetailClose() {
       this.userProfileDetailVisible = false;
     },

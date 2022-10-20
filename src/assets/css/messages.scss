@@ -89,6 +89,18 @@
                 object-fit: cover;
             }
         }
+        .create-new-messages{
+            position: absolute;
+            right: 10px;
+            bottom: 15px;
+            border: 1px solid red;
+            border-radius: 100%;
+            aspect-ratio: 1;
+            display: flex;
+            width: 35px;
+            justify-content: center;
+            align-items: center;
+        }
     }
 
     .message-page-content-left-scroll {
