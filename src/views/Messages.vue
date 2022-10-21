@@ -5,7 +5,7 @@
         <div class="col-4 border-end position-relative">
           <div
             v-show="myProfileDetailVisible"
-            class="row col-4 my-profile-detail"
+            class="row col-12 my-profile-detail"
           >
             <div class="profile-top-menu" @click="backMessageList">
               <span class="d-flex align-items-center cursor-pointer"
@@ -14,7 +14,7 @@
             </div>
             <div class="profile-picture">
               <img
-                src="../assets/image/messages/profile.jpeg"
+                src="../assets/image/messages/profile.png"
                 class="profile-img"
               />
             </div>
@@ -38,7 +38,7 @@
             >
               <img
                 @click="myProfileDetail"
-                src="../assets/image/messages/profile.jpeg"
+                src="../assets/image/messages/profile.png"
                 class="message-page-content-profile-picture"
               />
               <div>
@@ -82,7 +82,7 @@
               >
                 <div class="message-page-content-coming-message-picture">
                   <img
-                    src="../assets/image/messages/apom.jpeg"
+                    src="../assets/image/messages/contacts.png"
                     class="message-page-content-profile-picture"
                   />
                   <div
@@ -123,7 +123,7 @@
               class="d-flex align-items-center cursor-pointer"
             >
               <img
-                src="../assets/image/messages/apom.jpeg"
+                src="../assets/image/messages/contacts.png"
                 class="message-page-content-profile-picture"
               />
               {{ this.receiverNumber }}
