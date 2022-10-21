@@ -51,7 +51,9 @@
                   <template #button-content>
                     <i class="icon-settings btn"></i>
                   </template>
-                  <b-dropdown-item @click="createNewMessagePopup = true">Yeni Sohbet</b-dropdown-item>
+                  <b-dropdown-item @click="createNewMessagePopup = true"
+                    >Yeni Sohbet</b-dropdown-item
+                  >
                   <b-dropdown-item @click="myProfileDetailVisible = true"
                     >Profil</b-dropdown-item
                   >
@@ -103,7 +105,10 @@
             </div>
           </div>
           <div>
-            <button class="create-new-messages" @click="this.createNewMessagePopup = true">
+            <button
+              class="create-new-messages"
+              @click="this.createNewMessagePopup = true"
+            >
               <i class="icon-user-follow"></i>
             </button>
           </div>
@@ -178,19 +183,30 @@
     </div>
 
     <div>
-     
-
-      <b-modal v-model="createNewMessagePopup" centered title="Create New Messages" hide-footer>
-        <b-form-input v-model="receiverPhoneNumber" placeholder="Enter receiver phone number"></b-form-input>
+      <b-modal
+        v-model="createNewMessagePopup"
+        centered
+        title="Create New Messages"
+        hide-footer
+      >
+        <b-form-input
+          v-model="receiverPhoneNumber"
+          placeholder="Enter receiver phone number"
+        ></b-form-input>
         <b-form-textarea
-        class="mt-2"
-      id="textarea"
-      v-model="messageContent"
-      placeholder="Enter your messages"
-      rows="3"
-      max-rows="6"
-    ></b-form-textarea>
-    <b-button class="btn-sm mt-2" variant="success" @click="createNewMessage()">Button</b-button>
+          class="mt-2"
+          id="textarea"
+          v-model="messageContent"
+          placeholder="Enter your messages"
+          rows="3"
+          max-rows="6"
+        ></b-form-textarea>
+        <b-button
+          class="btn-sm mt-2"
+          variant="success"
+          @click="createNewMessage()"
+          >Button</b-button
+        >
       </b-modal>
     </div>
   </div>
@@ -209,9 +225,9 @@ import {
 export default {
   data() {
     return {
-      createNewMessagePopup:false,
-      messageContent:null,
-      receiverPhoneNumber:null,
+      createNewMessagePopup: false,
+      messageContent: null,
+      receiverPhoneNumber: null,
       isChatActive: false,
       userProfileDetailVisible: false,
       myProfileNameDisplay: true,
@@ -258,35 +274,39 @@ export default {
     }
   },
   methods: {
-   async createNewMessage(){
-     console.log(this.receiverPhoneNumber.trim())
-      if(( this.receiverPhoneNumber.trim().length != 0) && (this.messageContent.trim().length != 0)){
-       
-      await setDoc(
+    deneme(receiverPhone,msgContent) {
+     return setDoc(
         doc(
           db,
           "messages",
           Date() + JSON.parse(localStorage.getItem("mat-user")).uid
         ),
         {
-          messages: this.messageContent,
+          messages: msgContent,
           createdDate: Date(),
           sender: this.senderNumber,
-          receiver: this.receiverPhoneNumber,
+          receiver: receiverPhone,
+          isRead:false,
+          isDelete:false,
         }
-
-
       );
-      this.createNewMessagePopup = false;
-      this.getMessages(db);
-      this.selectUser(this.receiverPhoneNumber);
-      this.receiverPhoneNumber = null;
-      this.messageContent=null;
+
+    },
+    async createNewMessage() {
+      console.log(this.receiverPhoneNumber.trim());
+      if (
+        this.receiverPhoneNumber.trim().length != 0 &&
+        this.messageContent.trim().length != 0
+      ) {
+        await this.deneme(this.receiverPhoneNumber,this.messageContent);
+        this.createNewMessagePopup = false;
+        this.getMessages(db);
+        this.selectUser(this.receiverPhoneNumber);
+        this.receiverPhoneNumber = null;
+        this.messageContent = null;
+      } else {
+        alert("alanları doldurunuz");
       }
-      else{
-        alert("alanları doldurunuz")
-      }
-     
     },
     userDetailClose() {
       this.userProfileDetailVisible = false;
@@ -344,7 +364,7 @@ export default {
     },
     listMessages() {
       this.currentMessageList = "";
-      this.messageList.map((item) => {
+      this.messageList.filter(item => item.isDelete == false).map((item) => {
         let className = "incoming";
         if (item.sender == this.senderNumber) {
           className = "sending";
@@ -362,19 +382,7 @@ export default {
       });
     },
     async sendMessage() {
-      await setDoc(
-        doc(
-          db,
-          "messages",
-          Date() + JSON.parse(localStorage.getItem("mat-user")).uid
-        ),
-        {
-          messages: this.inputMessageText,
-          createdDate: Date(),
-          sender: this.senderNumber,
-          receiver: this.receiverNumber,
-        }
-      );
+      await this.deneme(this.receiverNumber,this.inputMessageText)
       this.messageList.push({
         messages: this.inputMessageText,
         createdDate: Date(),
@@ -400,8 +408,8 @@ export default {
       messagesSnapshot.docs
         .filter(
           (doc) =>
-            doc.data().sender == this.senderNumber ||
-            doc.data().receiver == this.senderNumber
+            (doc.data().sender == this.senderNumber ||
+            doc.data().receiver == this.senderNumber) && doc.data().isDelete == false
         )
         .map((doc) => {
           if (doc.data().sender == this.senderNumber) {
