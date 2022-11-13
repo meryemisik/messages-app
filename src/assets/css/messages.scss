@@ -145,6 +145,12 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        
+
+        &:active{
+            background-color: #f7f7f7;
+            border-radius: 10px;
+        }
 
         &:last-child {
             border-bottom: 0;

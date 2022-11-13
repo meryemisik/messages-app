@@ -75,10 +75,10 @@
 
             <div class="message-page-content-left-scroll thin-scrollbar">
               <div
-                class="col-12 message-page-content-messages-list"
+                class="col-12 message-page-content-messages-list cursor-pointer"
                 v-for="item in myContacts"
                 :key="item"
-                @click="selectUser(item)"
+                @click="selectUser(item.phone)"
               >
                 <div class="message-page-content-coming-message-picture">
                   <img
@@ -89,17 +89,19 @@
                     class="message-page-content-coming-message-list cursor-pointer"
                   >
                     <div class="message-page-content-message-user">
-                      {{ item }}
+                      {{ item.phone }}
                     </div>
                     <div class="message-page-content-message-content">
-                      Son mesaj
+                      {{ item.message }}
                     </div>
                   </div>
                 </div>
 
                 <div class="message-page-content-coming-message-time">
-                  <div>14:59</div>
-                  <div class="message-page-content-coming-message-count">4</div>
+                  <div>{{ item.createdDate }}</div>
+                  <div class="message-page-content-coming-message-count d-none">
+                    4
+                  </div>
                 </div>
               </div>
             </div>
@@ -144,12 +146,15 @@
                 <b-dropdown-item @click="isChatActive = false"
                   >Sohbeti Kapat</b-dropdown-item
                 >
+                <b-dropdown-item @click="deleteUser(this.receiverNumber)"
+                  >Sohbeti Sil</b-dropdown-item
+                >
               </b-dropdown>
             </div>
           </div>
           <div class="message-list thin-scrollbar">
             <div class="flex-column">
-              <span v-html="currentMessageList"></span>
+              <div v-html="currentMessageList"></div>
             </div>
           </div>
           <div
@@ -221,6 +226,8 @@ import {
   db,
   doc,
   setDoc,
+  query,
+  orderBy,
 } from "../firebase-config/index";
 export default {
   data() {
@@ -258,11 +265,13 @@ export default {
       ],
     };
   },
+
   async created() {
+    this.refreshMessages()
     this.myProfileName = JSON.parse(
       localStorage.getItem("mat-user")
     ).displayName;
-    this.getMessages(db);
+    this.getContacts(db);
     this.senderNumber = JSON.parse(
       localStorage.getItem("mat-user")
     ).phoneNumber;
@@ -274,8 +283,32 @@ export default {
     }
   },
   methods: {
-    deneme(receiverPhone,msgContent) {
-     return setDoc(
+    refreshMessages(){
+      setInterval(() => {
+        
+       if(this.receiverNumber != null){
+        this.getContacts(db);
+       }
+      },3000);
+    },
+    addZero(num) {
+      if (num < 10) {
+        return `0${num}`;
+      }
+      return num;
+    },
+    dateSort() {
+      var date = new Date();
+      return `${date.getFullYear()}-${this.addZero(
+        date.getMonth() + 1
+      )}-${this.addZero(date.getDate())}-${this.addZero(
+        date.getHours()
+      )}-${this.addZero(date.getMinutes())}-${this.addZero(
+        date.getSeconds()
+      )}-${this.addZero(date.getMilliseconds())}`;
+    },
+    messageStructure(receiverPhone, msgContent) {
+      return setDoc(
         doc(
           db,
           "messages",
@@ -286,21 +319,33 @@ export default {
           createdDate: Date(),
           sender: this.senderNumber,
           receiver: receiverPhone,
-          isRead:false,
-          isDelete:false,
+          isRead: false,
+          isDelete: false,
+          messageSorting: this.dateSort(),
         }
       );
-
     },
     async createNewMessage() {
-      console.log(this.receiverPhoneNumber.trim());
       if (
         this.receiverPhoneNumber.trim().length != 0 &&
         this.messageContent.trim().length != 0
       ) {
-        await this.deneme(this.receiverPhoneNumber,this.messageContent);
+        await this.messageStructure(
+          this.receiverPhoneNumber,
+          this.messageContent
+        );
         this.createNewMessagePopup = false;
-        this.getMessages(db);
+       
+        this.myContacts.map((e, index) => {
+        if(e.phone == this.receiverPhoneNumber){
+          this.myContacts.splice(index,1)
+        }
+      })
+        this.myContacts.splice(0, 0, {
+          phone: this.receiverPhoneNumber,
+          message: this.messageContent,
+          createdDate: this.writeMessageTime(new Date()),
+        });
         this.selectUser(this.receiverPhoneNumber);
         this.receiverPhoneNumber = null;
         this.messageContent = null;
@@ -351,6 +396,19 @@ export default {
         return "";
       }
     },
+    writeMessageTime(messageDate) {
+      if (new Date(messageDate).getDate() == new Date().getDate()) {
+        return `${this.addZero(
+          new Date(messageDate).getHours()
+        )}:${this.addZero(new Date(messageDate).getMinutes())}`;
+      } else if (new Date(messageDate).getDate() == new Date().getDate() - 1) {
+        return "Dün";
+      } else {
+        return `${this.addZero(new Date(messageDate).getDate())} ${this.addZero(
+          this.months[new Date(messageDate).getMonth()]
+        )} ${this.addZero(new Date(messageDate).getFullYear())}`;
+      }
+    },
     ScrollToBottom() {
       //window.scrollTo(0,  document.getElementsByClassName('message-list').scrollHeight);
       //document.getElementsByClassName('thin-scrollbar').scrollTo(0, 5000);
@@ -362,27 +420,71 @@ export default {
       this.getMessages(db);
       this.ScrollToBottom();
     },
-    listMessages() {
-      this.currentMessageList = "";
-      this.messageList.filter(item => item.isDelete == false).map((item) => {
-        let className = "incoming";
-        if (item.sender == this.senderNumber) {
-          className = "sending";
+    async deleteUser(phone) {
+
+      this.isChatActive = false;
+      this.receiverNumber = null;
+    
+      this.myContacts.map((e, index) => {
+        if (e.phone == phone) {
+          this.myContacts.splice(index, 1);
         }
-        this.currentMessageList += `${this.writeMessageDate(
-          item.createdDate
-        )}<div class='message-content-${className}'>
+      });
+
+      const messagesCol = collection(db, "messages");
+      const messagesSnapshot = await getDocs(messagesCol);
+      this.messageList = await Promise.all(
+        messagesSnapshot.docs
+          .filter(
+            (doc) =>
+              (doc.data().sender == phone ||
+                doc.data().sender == this.senderNumber) &&
+              (doc.data().receiver == phone ||
+                doc.data().receiver == this.senderNumber) &&
+              doc.data().isDelete == false
+          )
+          .map(async (doc) => {
+            await this.deleteMessage(doc.id);
+          })
+      );
+    },
+
+    async deleteMessage(id) {
+      setDoc(
+        doc(db, "messages", id),
+        {
+          isDelete: true,
+        },
+        { merge: true }
+      );
+    },
+    listMessages() {
+
+      this.currentMessageList = "";
+      this.messageList
+        .filter((item) => item.isDelete == false)
+        .map((item) => {
+          let className = "incoming";
+          if (item.sender == this.senderNumber) {
+            className = "sending";
+          }
+          this.currentMessageList += `${this.writeMessageDate(
+            item.createdDate
+          )}<div class='message-content-${className}'>
                   <span>${item.messages}</span>
                   <span class="messages-time"
-                    >${new Date(item.createdDate).getHours()}:${new Date(
-          item.createdDate
-        ).getMinutes()}</span
+                    >${this.addZero(
+                      new Date(item.createdDate).getHours()
+                    )}:${this.addZero(
+            new Date(item.createdDate).getMinutes()
+          )}</span
                   >
                 </div>`;
-      });
+        });
     },
+   
     async sendMessage() {
-      await this.deneme(this.receiverNumber,this.inputMessageText)
+      await this.messageStructure(this.receiverNumber, this.inputMessageText);
       this.messageList.push({
         messages: this.inputMessageText,
         createdDate: Date(),
@@ -390,36 +492,84 @@ export default {
         receiver: this.receiverNumber,
       });
 
+      this.myContacts.map((e, index) => {
+        if(e.phone == this.receiverNumber){
+          this.myContacts.splice(index,1)
+          this.myContacts.splice(0, 0, {
+          phone: this.receiverNumber,
+          message: this.inputMessageText,
+          createdDate: this.writeMessageTime(new Date()),
+        });
+        }
+      })
+
       this.inputMessageText = "";
+      this.getMessages(db);
     },
     async getMessages(db) {
       const messagesCol = collection(db, "messages");
-      const messagesSnapshot = await getDocs(messagesCol);
+      const sorting = query(messagesCol, orderBy("messageSorting"));
+      const messagesSnapshot = await getDocs(sorting);
       this.messageList = messagesSnapshot.docs
         .filter(
           (doc) =>
             (doc.data().sender == this.receiverNumber ||
               doc.data().sender == this.senderNumber) &&
             (doc.data().receiver == this.receiverNumber ||
-              doc.data().receiver == this.senderNumber)
+              doc.data().receiver == this.senderNumber) &&
+            doc.data().isDelete == false
         )
         .map((doc) => doc.data());
 
+      this.listMessages();
+    },
+    async getContacts(db) {
+      const messagesCol = collection(db, "messages");
+      const sorting = query(messagesCol, orderBy("messageSorting"));
+      const messagesSnapshot = await getDocs(sorting);
+
       messagesSnapshot.docs
+        .slice(0)
+        .reverse()
         .filter(
           (doc) =>
             (doc.data().sender == this.senderNumber ||
-            doc.data().receiver == this.senderNumber) && doc.data().isDelete == false
+              doc.data().receiver == this.senderNumber) &&
+            doc.data().isDelete == false
         )
         .map((doc) => {
+         
+
           if (doc.data().sender == this.senderNumber) {
-            if (!this.myContacts.includes(doc.data().receiver)) {
-              this.myContacts.push(doc.data().receiver);
+            let isData = false;
+            this.myContacts.map((e) => {
+              if (e.phone == doc.data().receiver) {
+                isData = true;
+              }
+            });
+
+            if (isData == false) {
+              this.myContacts.push({
+                phone: doc.data().receiver,
+                message: doc.data().messages,
+                createdDate: this.writeMessageTime(doc.data().createdDate),
+              });
             }
           }
           if (doc.data().receiver == this.senderNumber) {
-            if (!this.myContacts.includes(doc.data().sender)) {
-              this.myContacts.push(doc.data().sender);
+            let isData = false;
+            this.myContacts.map((e) => {
+              if (e.phone == doc.data().sender) {
+                isData = true;
+              }
+            });
+
+            if (isData == false) {
+              this.myContacts.push({
+                phone: doc.data().sender,
+                message: doc.data().messages,
+                createdDate: this.writeMessageTime(doc.data().createdDate),
+              });
             }
           }
         });
